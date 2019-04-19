@@ -6,6 +6,10 @@
 package source;
 
 import java.awt.Dimension;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONException;
 
 /**
  *
@@ -18,6 +22,9 @@ public class MainWindow extends javax.swing.JFrame {
      */
     public MainWindow() {
         initComponents();
+        getContentPane().add(new MainPanel());
+        getContentPane().repaint();
+        pack();
     }
 
     /**
@@ -29,169 +36,13 @@ public class MainWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        mainPanel = new javax.swing.JPanel();
-        topPanel = new javax.swing.JPanel();
-        welcomeLabel = new javax.swing.JLabel();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 70));
-        quotePanel = new javax.swing.JPanel();
-        quoteTopPanel = new javax.swing.JPanel();
-        motivationalQuoteLabel = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        quoteTextArea = new javax.swing.JTextArea();
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 50));
-        buttonsPanel = new javax.swing.JPanel();
-        filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(300, 0), new java.awt.Dimension(300, 0), new java.awt.Dimension(400, 32767));
-        registerButton = new javax.swing.JButton();
-        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(300, 0), new java.awt.Dimension(300, 0), new java.awt.Dimension(180, 32767));
-        jButton1 = new javax.swing.JButton();
-        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(300, 0), new java.awt.Dimension(300, 0), new java.awt.Dimension(400, 32767));
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("UserManagementSystem");
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
         setPreferredSize(new java.awt.Dimension(1280, 720));
         setResizable(false);
-
-        mainPanel.setBackground(new java.awt.Color(63, 81, 181));
-        mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        mainPanel.setMaximumSize(new java.awt.Dimension(1280, 720));
-        mainPanel.setMinimumSize(new java.awt.Dimension(1280, 720));
-        mainPanel.setLayout(new javax.swing.BoxLayout(mainPanel, javax.swing.BoxLayout.Y_AXIS));
-
-        topPanel.setBackground(new java.awt.Color(63, 81, 181));
-        topPanel.setAlignmentY(0.0F);
-        topPanel.setMaximumSize(new java.awt.Dimension(1330, 100));
-
-        welcomeLabel.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
-        welcomeLabel.setForeground(new java.awt.Color(255, 255, 255));
-        welcomeLabel.setText("Welcome");
-        welcomeLabel.setAlignmentY(0.0F);
-
-        javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
-        topPanel.setLayout(topPanelLayout);
-        topPanelLayout.setHorizontalGroup(
-            topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(topPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(welcomeLabel)
-                .addContainerGap(1139, Short.MAX_VALUE))
-        );
-        topPanelLayout.setVerticalGroup(
-            topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(topPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(welcomeLabel)
-                .addContainerGap(49, Short.MAX_VALUE))
-        );
-
-        mainPanel.add(topPanel);
-        mainPanel.add(filler1);
-
-        quotePanel.setBackground(new java.awt.Color(117, 125, 232));
-        quotePanel.setMaximumSize(new java.awt.Dimension(600, 300));
-
-        quoteTopPanel.setBackground(new java.awt.Color(0, 60, 143));
-
-        motivationalQuoteLabel.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        motivationalQuoteLabel.setForeground(new java.awt.Color(255, 255, 255));
-        motivationalQuoteLabel.setText("Motivational quote:");
-
-        javax.swing.GroupLayout quoteTopPanelLayout = new javax.swing.GroupLayout(quoteTopPanel);
-        quoteTopPanel.setLayout(quoteTopPanelLayout);
-        quoteTopPanelLayout.setHorizontalGroup(
-            quoteTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(quoteTopPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(motivationalQuoteLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        quoteTopPanelLayout.setVerticalGroup(
-            quoteTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(quoteTopPanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(motivationalQuoteLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jScrollPane1.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        jScrollPane1.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-        jScrollPane1.setEnabled(false);
-
-        quoteTextArea.setEditable(false);
-        quoteTextArea.setBackground(new java.awt.Color(117, 125, 232));
-        quoteTextArea.setColumns(20);
-        quoteTextArea.setFont(new java.awt.Font("Dialog", 0, 30)); // NOI18N
-        quoteTextArea.setForeground(new java.awt.Color(255, 255, 255));
-        quoteTextArea.setLineWrap(true);
-        quoteTextArea.setRows(5);
-        quoteTextArea.setText("“Don't cry because it's over, smile because it happened.”  ― Dr. Seuss");
-        quoteTextArea.setBorder(null);
-        jScrollPane1.setViewportView(quoteTextArea);
-
-        javax.swing.GroupLayout quotePanelLayout = new javax.swing.GroupLayout(quotePanel);
-        quotePanel.setLayout(quotePanelLayout);
-        quotePanelLayout.setHorizontalGroup(
-            quotePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(quoteTopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(quotePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        quotePanelLayout.setVerticalGroup(
-            quotePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(quotePanelLayout.createSequentialGroup()
-                .addComponent(quoteTopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        mainPanel.add(quotePanel);
-        mainPanel.add(filler2);
-
-        buttonsPanel.setBackground(mainPanel.getBackground());
-        buttonsPanel.setAlignmentY(0.5F);
-        buttonsPanel.setMaximumSize(new java.awt.Dimension(1280, 100));
-        buttonsPanel.setPreferredSize(new java.awt.Dimension(1280, 100));
-        buttonsPanel.setLayout(new javax.swing.BoxLayout(buttonsPanel, javax.swing.BoxLayout.X_AXIS));
-        buttonsPanel.add(filler3);
-
-        registerButton.setBackground(new java.awt.Color(0, 59, 142));
-        registerButton.setForeground(new java.awt.Color(255, 255, 255));
-        registerButton.setText("Register");
-        registerButton.setAlignmentX(0.5F);
-        registerButton.setBorder(null);
-        registerButton.setBorderPainted(false);
-        registerButton.setMargin(null);
-        registerButton.setMaximumSize(new java.awt.Dimension(150, 30));
-        registerButton.setPreferredSize(new java.awt.Dimension(150, 30));
-        buttonsPanel.add(registerButton);
-        buttonsPanel.add(filler5);
-
-        jButton1.setBackground(new java.awt.Color(0, 59, 142));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Login");
-        jButton1.setAlignmentX(1.0F);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setMargin(null);
-        jButton1.setMaximumSize(new java.awt.Dimension(150, 30));
-        buttonsPanel.add(jButton1);
-        buttonsPanel.add(filler4);
-
-        mainPanel.add(buttonsPanel);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        getContentPane().setLayout(new java.awt.CardLayout());
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -229,24 +80,9 @@ public class MainWindow extends javax.swing.JFrame {
                 new MainWindow().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel buttonsPanel;
-    private javax.swing.Box.Filler filler1;
-    private javax.swing.Box.Filler filler2;
-    private javax.swing.Box.Filler filler3;
-    private javax.swing.Box.Filler filler4;
-    private javax.swing.Box.Filler filler5;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JPanel mainPanel;
-    private javax.swing.JLabel motivationalQuoteLabel;
-    private javax.swing.JPanel quotePanel;
-    private javax.swing.JTextArea quoteTextArea;
-    private javax.swing.JPanel quoteTopPanel;
-    private javax.swing.JButton registerButton;
-    private javax.swing.JPanel topPanel;
-    private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }

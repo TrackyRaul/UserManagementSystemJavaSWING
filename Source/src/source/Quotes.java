@@ -30,8 +30,13 @@ public class Quotes {
      * @throws ClassNotFoundException
      */
     public Quotes() throws IOException, FileNotFoundException, ClassNotFoundException {
-        deserialize();
-
+        try{
+            deserialize();
+        
+        }catch(Exception e){
+            loadFromCsv();
+            serialize();
+        }
         if (quotes.size() == 0) {
             loadFromCsv();
             serialize();
@@ -74,7 +79,6 @@ public class Quotes {
     public String random() {
         int rand = (int) (Math.random() * this.quotes.size());
         String quote = this.quotes.get(rand);
-        System.out.println(quote.length());
         if (quote.length() > 150) {
             return random();
         }

@@ -4,20 +4,18 @@
  * and open the template in the editor.
  */
 package source;
-
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
-
 /**
  *
- * @author Raul Farkas
+ * @author raul
  */
-public class LoginPanel extends javax.swing.JPanel {
+public class RegisterPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form LoginPanel
+     * Creates new form RegisterPanel
      */
-    public LoginPanel() {
+    public RegisterPanel() {
         initComponents();
     }
 
@@ -33,21 +31,25 @@ public class LoginPanel extends javax.swing.JPanel {
         mainPanel = new javax.swing.JPanel();
         topPanel = new javax.swing.JPanel();
         welcomeLabel = new javax.swing.JLabel();
-        homeButton = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 70));
         credentialsPanel = new javax.swing.JPanel();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 50));
-        jLabel2 = new javax.swing.JLabel();
+        usernameLabel = new javax.swing.JLabel();
         usernameField = new javax.swing.JTextField();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(300, 0), new java.awt.Dimension(300, 0), new java.awt.Dimension(200, 70));
-        jLabel1 = new javax.swing.JLabel();
+        emailLabel = new javax.swing.JLabel();
+        emailField = new javax.swing.JTextField();
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(300, 0), new java.awt.Dimension(300, 0), new java.awt.Dimension(200, 70));
+        passwordLabel = new javax.swing.JLabel();
         passwordField = new javax.swing.JPasswordField();
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 20));
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 40));
         buttonsPanel = new javax.swing.JPanel();
-        loginButton = new javax.swing.JButton();
+        registerButton = new javax.swing.JButton();
+        homeButton = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
+        setPreferredSize(new java.awt.Dimension(1280, 720));
 
         mainPanel.setBackground(new java.awt.Color(63, 81, 181));
         mainPanel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -65,22 +67,6 @@ public class LoginPanel extends javax.swing.JPanel {
         welcomeLabel.setText("Welcome");
         welcomeLabel.setAlignmentY(0.0F);
 
-        homeButton.setBackground(new java.awt.Color(0, 59, 142));
-        homeButton.setForeground(new java.awt.Color(255, 255, 255));
-        homeButton.setText("Home");
-        homeButton.setAlignmentX(0.5F);
-        homeButton.setBorder(null);
-        homeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        homeButton.setMargin(null);
-        homeButton.setMaximumSize(new java.awt.Dimension(180, 30));
-        homeButton.setMinimumSize(new java.awt.Dimension(180, 30));
-        homeButton.setPreferredSize(new java.awt.Dimension(180, 30));
-        homeButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goToHome(evt);
-            }
-        });
-
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
         topPanelLayout.setHorizontalGroup(
@@ -88,17 +74,13 @@ public class LoginPanel extends javax.swing.JPanel {
             .addGroup(topPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(welcomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 947, Short.MAX_VALUE)
-                .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(1139, Short.MAX_VALUE))
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(welcomeLabel)
-                    .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(welcomeLabel)
                 .addContainerGap(49, Short.MAX_VALUE))
         );
 
@@ -112,11 +94,11 @@ public class LoginPanel extends javax.swing.JPanel {
         credentialsPanel.setLayout(new javax.swing.BoxLayout(credentialsPanel, javax.swing.BoxLayout.Y_AXIS));
         credentialsPanel.add(filler4);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Username");
-        jLabel2.setAlignmentX(0.5F);
-        credentialsPanel.add(jLabel2);
+        usernameLabel.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        usernameLabel.setForeground(new java.awt.Color(255, 255, 255));
+        usernameLabel.setText("Username");
+        usernameLabel.setAlignmentX(0.5F);
+        credentialsPanel.add(usernameLabel);
 
         usernameField.setBackground(new java.awt.Color(117, 125, 232));
         usernameField.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
@@ -131,11 +113,27 @@ public class LoginPanel extends javax.swing.JPanel {
         credentialsPanel.add(usernameField);
         credentialsPanel.add(filler3);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Password");
-        jLabel1.setAlignmentX(0.5F);
-        credentialsPanel.add(jLabel1);
+        emailLabel.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        emailLabel.setForeground(new java.awt.Color(255, 255, 255));
+        emailLabel.setText("Email");
+        emailLabel.setAlignmentX(0.5F);
+        credentialsPanel.add(emailLabel);
+
+        emailField.setBackground(new java.awt.Color(117, 125, 232));
+        emailField.setForeground(new java.awt.Color(255, 255, 255));
+        emailField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        emailField.setBorder(null);
+        emailField.setMaximumSize(new java.awt.Dimension(250, 40));
+        emailField.setMinimumSize(new java.awt.Dimension(250, 40));
+        emailField.setPreferredSize(new java.awt.Dimension(250, 40));
+        credentialsPanel.add(emailField);
+        credentialsPanel.add(filler5);
+
+        passwordLabel.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
+        passwordLabel.setForeground(new java.awt.Color(255, 255, 255));
+        passwordLabel.setText("Password");
+        passwordLabel.setAlignmentX(0.5F);
+        credentialsPanel.add(passwordLabel);
 
         passwordField.setBackground(new java.awt.Color(117, 125, 232));
         passwordField.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,11 +142,6 @@ public class LoginPanel extends javax.swing.JPanel {
         passwordField.setMaximumSize(new java.awt.Dimension(250, 40));
         passwordField.setMinimumSize(new java.awt.Dimension(250, 40));
         passwordField.setPreferredSize(new java.awt.Dimension(250, 40));
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
         credentialsPanel.add(passwordField);
 
         mainPanel.add(credentialsPanel);
@@ -160,25 +153,44 @@ public class LoginPanel extends javax.swing.JPanel {
         buttonsPanel.setPreferredSize(new java.awt.Dimension(1280, 100));
         buttonsPanel.setLayout(new javax.swing.BoxLayout(buttonsPanel, javax.swing.BoxLayout.Y_AXIS));
 
-        loginButton.setBackground(new java.awt.Color(0, 59, 142));
-        loginButton.setForeground(new java.awt.Color(255, 255, 255));
-        loginButton.setText("Login");
-        loginButton.setAlignmentX(0.5F);
-        loginButton.setBorder(null);
-        loginButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        loginButton.setMargin(null);
-        loginButton.setMaximumSize(new java.awt.Dimension(200, 50));
-        loginButton.setMinimumSize(new java.awt.Dimension(200, 50));
-        loginButton.setPreferredSize(new java.awt.Dimension(200, 50));
-        buttonsPanel.add(loginButton);
+        registerButton.setBackground(new java.awt.Color(0, 59, 142));
+        registerButton.setForeground(new java.awt.Color(255, 255, 255));
+        registerButton.setText("Register");
+        registerButton.setAlignmentX(0.5F);
+        registerButton.setBorder(null);
+        registerButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        registerButton.setMargin(null);
+        registerButton.setMaximumSize(new java.awt.Dimension(200, 50));
+        registerButton.setMinimumSize(new java.awt.Dimension(200, 50));
+        registerButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        buttonsPanel.add(registerButton);
 
         mainPanel.add(buttonsPanel);
+
+        homeButton.setBackground(new java.awt.Color(0, 59, 142));
+        homeButton.setForeground(new java.awt.Color(255, 255, 255));
+        homeButton.setText("Home");
+        homeButton.setAlignmentX(0.5F);
+        homeButton.setBorder(null);
+        homeButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        homeButton.setMargin(null);
+        homeButton.setMaximumSize(new java.awt.Dimension(180, 30));
+        homeButton.setMinimumSize(new java.awt.Dimension(180, 30));
+        homeButton.setPreferredSize(new java.awt.Dimension(180, 30));
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtongoToHome(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(1088, Short.MAX_VALUE)
+                .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -187,7 +199,10 @@ public class LoginPanel extends javax.swing.JPanel {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 778, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(homeButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(736, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -196,34 +211,33 @@ public class LoginPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
-    private void goToHome(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToHome
+    private void homeButtongoToHome(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtongoToHome
         // TODO add your handling code here:
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         topFrame.getContentPane().removeAll();
         topFrame.getContentPane().add(new MainPanel());
         topFrame.pack();
-    }//GEN-LAST:event_goToHome
+    }//GEN-LAST:event_homeButtongoToHome
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JPanel credentialsPanel;
+    private javax.swing.JTextField emailField;
+    private javax.swing.JLabel emailLabel;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler5;
     private javax.swing.JButton homeButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JButton loginButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JButton registerButton;
     private javax.swing.JPanel topPanel;
     private javax.swing.JTextField usernameField;
+    private javax.swing.JLabel usernameLabel;
     private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }

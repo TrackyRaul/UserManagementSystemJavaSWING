@@ -267,7 +267,6 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="b5" green="51" red="3f" type="rgb"/>
             </Property>
-            <Property name="alignmentY" type="float" value="0.5"/>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[1280, 100]"/>
             </Property>
@@ -320,6 +319,9 @@
                   <Dimension value="[200, 50]"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="goToRegister"/>
+              </Events>
             </Component>
             <Component class="javax.swing.Box$Filler" name="filler5">
               <Properties>

@@ -171,7 +171,6 @@ public class MainPanel extends javax.swing.JPanel {
         mainPanel.add(filler2);
 
         buttonsPanel.setBackground(new java.awt.Color(63, 81, 181));
-        buttonsPanel.setAlignmentY(0.5F);
         buttonsPanel.setMaximumSize(new java.awt.Dimension(1280, 100));
         buttonsPanel.setPreferredSize(new java.awt.Dimension(1280, 100));
         buttonsPanel.setLayout(new javax.swing.BoxLayout(buttonsPanel, javax.swing.BoxLayout.X_AXIS));
@@ -186,6 +185,11 @@ public class MainPanel extends javax.swing.JPanel {
         registerButton.setMargin(null);
         registerButton.setMaximumSize(new java.awt.Dimension(200, 50));
         registerButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goToRegister(evt);
+            }
+        });
         buttonsPanel.add(registerButton);
         buttonsPanel.add(filler5);
 
@@ -242,6 +246,14 @@ public class MainPanel extends javax.swing.JPanel {
         topFrame.getContentPane().add(new LoginPanel());
         topFrame.pack();
     }//GEN-LAST:event_goToLogin
+
+    private void goToRegister(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToRegister
+        // TODO add your handling code here:
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new RegisterPanel());
+        topFrame.pack();
+    }//GEN-LAST:event_goToRegister
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

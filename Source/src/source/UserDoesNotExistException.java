@@ -7,18 +7,16 @@ package source;
 
 /**
  *
- * @author raul
+ * @author Raul Farkas
  */
-public class SessionExpiredException extends Exception {
+public class UserDoesNotExistException extends Exception{
 
     /**
      *
      * @param string
      */
-    public SessionExpiredException(String string) {
+    public UserDoesNotExistException(String string) {
         super(string);
     }
-    
-    
     
 }

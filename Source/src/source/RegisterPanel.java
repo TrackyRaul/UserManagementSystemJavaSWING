@@ -4,8 +4,13 @@
  * and open the template in the editor.
  */
 package source;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+
 /**
  *
  * @author raul
@@ -120,6 +125,7 @@ public class RegisterPanel extends javax.swing.JPanel {
         credentialsPanel.add(emailLabel);
 
         emailField.setBackground(new java.awt.Color(117, 125, 232));
+        emailField.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         emailField.setForeground(new java.awt.Color(255, 255, 255));
         emailField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         emailField.setBorder(null);
@@ -163,6 +169,11 @@ public class RegisterPanel extends javax.swing.JPanel {
         registerButton.setMaximumSize(new java.awt.Dimension(200, 50));
         registerButton.setMinimumSize(new java.awt.Dimension(200, 50));
         registerButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                registerButtonActionPerformed(evt);
+            }
+        });
         buttonsPanel.add(registerButton);
 
         mainPanel.add(buttonsPanel);
@@ -218,6 +229,52 @@ public class RegisterPanel extends javax.swing.JPanel {
         topFrame.getContentPane().add(new MainPanel());
         topFrame.pack();
     }//GEN-LAST:event_homeButtongoToHome
+
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
+        //Register
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+        String email = emailField.getText();
+        if(username.length() < 3){
+            JOptionPane.showMessageDialog(null,
+                    "Username must contain at least 3 characters!",
+                    "Inane error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+            
+        }
+        if(!email.contains("@") || !email.contains(".")){
+            JOptionPane.showMessageDialog(null,
+                    "Email not valid!",
+                    "Inane error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(password.length() < 6){
+            JOptionPane.showMessageDialog(null,
+                    "Password must contain at least 6 characters!",
+                    "Inane error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        
+        //Hash password
+        String npassword = Tools.getSHA(password);
+        System.out.println(password);
+        try {
+            MainWindow.usersList.Register(username, email, npassword);
+        } catch (UserAlreadyExistsException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "User already exists!",
+                    "Inane error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(null,
+                "User created!");
+
+
+    }//GEN-LAST:event_registerButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

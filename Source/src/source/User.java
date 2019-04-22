@@ -7,19 +7,38 @@ import java.io.Serializable;
  * @author Raul Farkas
  */
 public class User implements Serializable  {
-    public String username;
-    public String password;
-    public String email;
-    public boolean blocked;
-    public String description;
+    private String username;
+    private String password;
+    private String email;
+    private boolean blocked;
+    private String description;
+    
+    /**
+     *
+     */
+    public User(){
+        
+    }
 
-    public User(String username, String password, String email) {
+    /**
+     * Constructor
+     *
+     * @param username
+     * @param email
+     * @param password
+     */
+    public User(String username, String email,String password) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.blocked = false;
     }
     
+    /**
+     * Copy constructor
+     *
+     * @param usr
+     */
     public User(User usr){
         this.username = usr.getUsername();
         this.password = usr.getPassword();

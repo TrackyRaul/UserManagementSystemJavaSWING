@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.json.JSONException;
 
 /**
@@ -18,13 +19,35 @@ import org.json.JSONException;
 public class MainWindow extends javax.swing.JFrame {
 
     /**
+     *
+     */
+    public static Session session;
+
+    /**
+     *
+     */
+    public static UsersList usersList;
+
+    /**
      * Creates new form MainWindow
      */
     public MainWindow() {
+        //Add main panel to window
         initComponents();
         getContentPane().add(new MainPanel());
         getContentPane().repaint();
         pack();
+        //Create a session
+        try {
+            session = new Session();
+        } catch (SessionExpiredException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "Session expired",
+                    "Inane error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        usersList = new UsersList();
+
     }
 
     /**
@@ -80,7 +103,7 @@ public class MainWindow extends javax.swing.JFrame {
                 new MainWindow().setVisible(true);
             }
         });
-        
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

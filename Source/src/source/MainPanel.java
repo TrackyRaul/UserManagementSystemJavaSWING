@@ -23,7 +23,8 @@ public class MainPanel extends javax.swing.JPanel {
      */
     public MainPanel() {
         initComponents();
-
+        
+        //Load quotes
         try {
             this.quotes = new Quotes();
             this.quoteTextArea.setText(quotes.random());

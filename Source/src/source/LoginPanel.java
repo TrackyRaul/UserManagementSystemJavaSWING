@@ -5,7 +5,11 @@
  */
 package source;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
 /**
@@ -170,6 +174,11 @@ public class LoginPanel extends javax.swing.JPanel {
         loginButton.setMaximumSize(new java.awt.Dimension(200, 50));
         loginButton.setMinimumSize(new java.awt.Dimension(200, 50));
         loginButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        loginButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loginButtonActionPerformed(evt);
+            }
+        });
         buttonsPanel.add(loginButton);
 
         mainPanel.add(buttonsPanel);
@@ -201,12 +210,43 @@ public class LoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void goToHome(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToHome
-        // TODO add your handling code here:
+
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         topFrame.getContentPane().removeAll();
         topFrame.getContentPane().add(new MainPanel());
         topFrame.pack();
     }//GEN-LAST:event_goToHome
+
+    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
+        
+        //Login
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+        //Hash password
+        password = Tools.getSHA(password);
+
+        
+        try {
+            MainWindow.session.setUser(MainWindow.usersList.login(username, password));
+        } catch (UserDoesNotExistException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "User does not exist!",
+                    "Inane error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+        } catch (IOException ex) {
+            Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+        }
+        JOptionPane.showMessageDialog(null,
+                "Welcome " + username);
+        
+        //Go to home
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new MainPanel());
+        topFrame.pack();
+    }//GEN-LAST:event_loginButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -9,16 +9,14 @@ package source;
  *
  * @author raul
  */
-public class SessionExpiredException extends Exception {
+public class UserAlreadyExistsException extends Exception {
 
     /**
      *
      * @param string
      */
-    public SessionExpiredException(String string) {
+    public UserAlreadyExistsException(String string) {
         super(string);
     }
-    
-    
     
 }

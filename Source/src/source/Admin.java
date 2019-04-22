@@ -9,8 +9,15 @@ import java.io.Serializable;
  */
 public class Admin extends User implements Serializable {
     
+    /**
+     * Constructor
+     *
+     * @param username
+     * @param password
+     * @param email
+     */
     public Admin(String username, String password, String email) {
         super(username, password, email);
-        this.blocked = false;
+        super.setBlocked(false);
     }
 }

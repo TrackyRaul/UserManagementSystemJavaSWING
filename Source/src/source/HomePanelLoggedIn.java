@@ -288,11 +288,7 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
 
     private void goToUserArea(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToUserArea
         // TODO add your handling code here:
-        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        topFrame.getContentPane().removeAll();
-        //Still to be added!!!!!!!!!!!!!!!!!!!!
-        topFrame.getContentPane().add(new RegisterPanel());
-        topFrame.pack();
+        
     }//GEN-LAST:event_goToUserArea
 
     private void enterButton1enterUserArea(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButton1enterUserArea

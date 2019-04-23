@@ -23,6 +23,7 @@ public class MainPanel extends javax.swing.JPanel {
      */
     public MainPanel() {
         
+        
         initComponents();
         welcomeLabel.setText("Welcome, guest!");
         
@@ -35,6 +36,7 @@ public class MainPanel extends javax.swing.JPanel {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
     }
 

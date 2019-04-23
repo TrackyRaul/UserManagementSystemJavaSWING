@@ -35,9 +35,7 @@ public class MainWindow extends javax.swing.JFrame {
     public MainWindow() {
         //Add main panel to window
         initComponents();
-        getContentPane().add(new MainPanel());
-        getContentPane().repaint();
-        pack();
+        
         //Create a session
         try {
             session = new Session();
@@ -46,8 +44,17 @@ public class MainWindow extends javax.swing.JFrame {
                     "Session expired",
                     "Inane error",
                     JOptionPane.ERROR_MESSAGE);
+            try {
+                session = new Session();
+            } catch (SessionExpiredException ex1) {
+                Logger.getLogger(MainWindow.class.getName()).log(Level.SEVERE, null, ex1);
+            }
         }
         usersList = new UsersList();
+        
+        getContentPane().add(new MainPanel());
+        getContentPane().repaint();
+        pack();
         
         if (MainWindow.session.getUser() != null) {
             

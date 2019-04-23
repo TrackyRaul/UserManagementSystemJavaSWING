@@ -21,7 +21,9 @@ public class RegisterPanel extends javax.swing.JPanel {
      * Creates new form RegisterPanel
      */
     public RegisterPanel() {
+        
         initComponents();
+        
         welcomeLabel.setText("Welcome, guest!");
     }
 
@@ -276,6 +278,10 @@ public class RegisterPanel extends javax.swing.JPanel {
         passwordField.setText("");
         JOptionPane.showMessageDialog(null,
                 "User created!");
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new MainPanel());
+        topFrame.pack();
 
 
     }//GEN-LAST:event_registerButtonActionPerformed

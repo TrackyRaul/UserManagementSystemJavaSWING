@@ -62,10 +62,12 @@ public class Session implements Serializable {
             this.user = (User) in.readObject();
             this.lastLogin = (LocalDateTime) in.readObject();
             //Set it to null if 
-            if (LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) > this.lastLogin.toEpochSecond(ZoneOffset.UTC)+ 172800  && this.user != null) {
+            if (LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) > this.lastLogin.toEpochSecond(ZoneOffset.UTC)+ 1800  && this.user != null) {
                 this.user = null;
                 this.lastLogin = null;
+                serialize();
                 throw new SessionExpiredException("Session has expired!");
+                
             }
             in.close();
             fileIn.close();
@@ -86,7 +88,7 @@ public class Session implements Serializable {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NullPointerException ex) {
-            Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
+            
             try {
                 serialize();
             } catch (IOException ex1) {

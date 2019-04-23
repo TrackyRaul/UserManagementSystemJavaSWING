@@ -22,6 +22,7 @@ public class LoginPanel extends javax.swing.JPanel {
      * Creates new form LoginPanel
      */
     public LoginPanel() {
+        
         initComponents();
         welcomeLabel.setText("Welcome, guest!");
     }
@@ -219,14 +220,13 @@ public class LoginPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_goToHome
 
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        
+
         //Login
         String username = usernameField.getText();
         String password = new String(passwordField.getPassword());
         //Hash password
         password = Tools.getSHA(password);
 
-        
         try {
             MainWindow.session.setUser(MainWindow.usersList.login(username, password));
         } catch (UserDoesNotExistException ex) {
@@ -241,7 +241,7 @@ public class LoginPanel extends javax.swing.JPanel {
         }
         JOptionPane.showMessageDialog(null,
                 "Welcome " + username);
-        
+
         //Go to home
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         topFrame.getContentPane().removeAll();

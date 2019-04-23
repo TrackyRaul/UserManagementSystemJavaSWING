@@ -22,7 +22,9 @@ public class MainPanel extends javax.swing.JPanel {
      * Creates new form MainPanel
      */
     public MainPanel() {
+        
         initComponents();
+        welcomeLabel.setText("Welcome, guest!");
         
         //Load quotes
         try {

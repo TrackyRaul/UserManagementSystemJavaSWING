@@ -22,6 +22,7 @@ public class RegisterPanel extends javax.swing.JPanel {
      */
     public RegisterPanel() {
         initComponents();
+        welcomeLabel.setText("Welcome, guest!");
     }
 
     /**
@@ -270,6 +271,9 @@ public class RegisterPanel extends javax.swing.JPanel {
                     JOptionPane.ERROR_MESSAGE);
             return;
         }
+        usernameField.setText("");
+        emailField.setText("");
+        passwordField.setText("");
         JOptionPane.showMessageDialog(null,
                 "User created!");
 

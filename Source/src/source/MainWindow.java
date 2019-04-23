@@ -9,8 +9,9 @@ import java.awt.Dimension;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import org.json.JSONException;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -47,6 +48,13 @@ public class MainWindow extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         }
         usersList = new UsersList();
+        
+        if (MainWindow.session.getUser() != null) {
+            
+            getContentPane().removeAll();
+            getContentPane().add(new HomePanelLoggedIn());
+            pack();
+        }
 
     }
 

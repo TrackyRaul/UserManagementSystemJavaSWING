@@ -23,6 +23,7 @@ public class LoginPanel extends javax.swing.JPanel {
      */
     public LoginPanel() {
         initComponents();
+        welcomeLabel.setText("Welcome, guest!");
     }
 
     /**
@@ -244,7 +245,7 @@ public class LoginPanel extends javax.swing.JPanel {
         //Go to home
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         topFrame.getContentPane().removeAll();
-        topFrame.getContentPane().add(new MainPanel());
+        topFrame.getContentPane().add(new HomePanelLoggedIn());
         topFrame.pack();
     }//GEN-LAST:event_loginButtonActionPerformed
 

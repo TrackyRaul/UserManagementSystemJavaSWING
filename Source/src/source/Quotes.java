@@ -51,7 +51,7 @@ public class Quotes {
      */
     private void serialize() throws FileNotFoundException, IOException {
         FileOutputStream fileOut
-                = new FileOutputStream("/tmp/quotes.ser");
+                = new FileOutputStream("./data/quotes.ser");
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
         out.writeObject(this.quotes);
         out.close();
@@ -63,7 +63,7 @@ public class Quotes {
      *
      */
     private void deserialize() throws FileNotFoundException, IOException, ClassNotFoundException {
-        FileInputStream fileIn = new FileInputStream("/tmp/quotes.ser");
+        FileInputStream fileIn = new FileInputStream("./data/quotes.ser");
         ObjectInputStream in = new ObjectInputStream(fileIn);
         this.quotes = (ArrayList<String>) in.readObject();
         in.close();

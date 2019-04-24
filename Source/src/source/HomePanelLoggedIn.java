@@ -319,6 +319,10 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
 
     private void goToProfile(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToProfile
         // TODO add your handling code here:
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new Profile());
+        topFrame.pack();
     }//GEN-LAST:event_goToProfile
 
 

@@ -32,6 +32,7 @@ public class Session implements Serializable {
 
         deserialize();
     }
+    
 
     /**
      * Serialize session

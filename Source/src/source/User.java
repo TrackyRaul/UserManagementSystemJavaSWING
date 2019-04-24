@@ -6,18 +6,21 @@ import java.io.Serializable;
  *
  * @author Raul Farkas
  */
-public class User implements Serializable  {
+public class User implements Serializable {
+
     private String username;
+    private String name;
+    private String surname;
     private String password;
     private String email;
     private boolean blocked;
     private String description;
-    
+
     /**
      *
      */
-    public User(){
-        
+    public User() {
+
     }
 
     /**
@@ -27,29 +30,31 @@ public class User implements Serializable  {
      * @param email
      * @param password
      */
-    public User(String username, String email,String password) {
+    public User(String username, String email, String password) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.blocked = false;
     }
-    
-    /**
-     * Copy constructor
-     *
-     * @param usr
-     */
-    public User(User usr){
+
+    public User(User usr) {
         this.username = usr.getUsername();
+        this.name = usr.getName();
+        this.surname = usr.getSurname();
         this.password = usr.getPassword();
         this.email = usr.getEmail();
         this.blocked = usr.isBlocked();
+        this.description = usr.getDescription();
     }
+    
+    
 
-    /**
-     * @return the username
-     */
-    public String getUsername() {
+    
+
+/**
+ * @return the username
+ */
+public String getUsername() {
         return username;
     }
 
@@ -66,6 +71,7 @@ public class User implements Serializable  {
     public String getEmail() {
         return email;
     }
+    
 
     /**
      * @return the blocked
@@ -78,6 +84,7 @@ public class User implements Serializable  {
      * @param blocked the blocked to set
      */
     public void setBlocked(boolean blocked) {
+        
         this.blocked = blocked;
     }
 
@@ -93,6 +100,41 @@ public class User implements Serializable  {
      */
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * @return the surname
+     */
+    public String getSurname() {
+        return surname;
+    }
+
+    /**
+     * @param surname the surname to set
+     */
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
     }
     
     

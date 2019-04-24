@@ -156,6 +156,19 @@ public class UsersList implements Serializable {
         }
 
     }
+    
+    public void updateUser(User user){
+        for(int i = 0; i<users.size();i++){
+            if(users.get(i).getUsername().equals(user.getUsername())){
+                users.set(i, user);
+            }
+        }
+        try {
+            serialize();
+        } catch (IOException ex) {
+            Logger.getLogger(UsersList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     /**
      * Serialize

@@ -263,7 +263,6 @@ public class RegisterPanel extends javax.swing.JPanel {
         
         //Hash password
         String npassword = Tools.getSHA(password);
-        System.out.println(password);
         try {
             MainWindow.usersList.Register(username, email, npassword);
         } catch (UserAlreadyExistsException ex) {

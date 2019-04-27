@@ -33,7 +33,16 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
         }
         initComponents();
         welcomeLabel.setText("Welcome, " + MainWindow.session.getUser().getUsername());
-
+        
+         //Load quotes
+        try {
+            this.quotes = new Quotes();
+            this.quoteTextArea.setText(quotes.random());
+        } catch (IOException ex) {
+            Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(MainPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

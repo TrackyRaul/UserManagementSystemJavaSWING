@@ -22,12 +22,19 @@ public class MainWindow extends javax.swing.JFrame {
     /**
      *
      */
+    public static UsersList usersList;
+
+    /**
+     *
+     */
     public static Session session;
 
     /**
      *
      */
-    public static UsersList usersList;
+    
+    
+    public static SignatureList signatureList;
 
     /**
      * Creates new form MainWindow
@@ -37,8 +44,11 @@ public class MainWindow extends javax.swing.JFrame {
         initComponents();
         
         //Create a session
+        
         try {
+            signatureList = new SignatureList();
             session = new Session();
+            
         } catch (SessionExpiredException ex) {
             JOptionPane.showMessageDialog(null,
                     "Session expired",
@@ -51,6 +61,8 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
         usersList = new UsersList();
+        //session.updateUserSession();
+        
         
         getContentPane().add(new MainPanel());
         getContentPane().repaint();

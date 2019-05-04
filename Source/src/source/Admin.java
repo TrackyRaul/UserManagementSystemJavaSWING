@@ -20,4 +20,8 @@ public class Admin extends User implements Serializable {
         super(username, password, email);
         super.setBlocked(false);
     }
+
+    Admin(User user) {
+        super(user);
+    }
 }

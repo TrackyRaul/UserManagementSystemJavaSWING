@@ -16,12 +16,12 @@ import javax.swing.SwingUtilities;
  *
  * @author raul
  */
-public class Profile extends javax.swing.JPanel {
+public class MoreInfoPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form Profile
+     * Creates new form MoreInfoPanel
      */
-    public Profile() {
+    public MoreInfoPanel() {
         initComponents();
     }
 
@@ -39,24 +39,26 @@ public class Profile extends javax.swing.JPanel {
         homeButton = new javax.swing.JButton();
         logOutButton = new javax.swing.JButton();
         welcomeLabel1 = new javax.swing.JLabel();
-        filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 30));
         credentialsPanel = new javax.swing.JPanel();
         welcomeLabel = new javax.swing.JLabel();
+        filler12 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 20), new java.awt.Dimension(100, 100));
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 50));
         jLabel2 = new javax.swing.JLabel();
-        nameField = new javax.swing.JTextField();
+        filler13 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 20), new java.awt.Dimension(100, 100));
+        roleField = new javax.swing.JTextField();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(300, 0), new java.awt.Dimension(300, 0), new java.awt.Dimension(200, 30));
+        filler11 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 20), new java.awt.Dimension(100, 100));
         jLabel3 = new javax.swing.JLabel();
-        surnameField = new javax.swing.JTextField();
+        filler10 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 20), new java.awt.Dimension(100, 100));
         filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(300, 0), new java.awt.Dimension(300, 0), new java.awt.Dimension(200, 30));
-        jLabel4 = new javax.swing.JLabel();
-        emailField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descriptionField = new javax.swing.JTextArea();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 50));
         buttonsPanel = new javax.swing.JPanel();
         filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(350, 170));
-        cancelButton = new javax.swing.JButton();
+        backButton = new javax.swing.JButton();
         filler9 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(50, 170));
-        moreInfoButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(50, 170));
         saveButton = new javax.swing.JButton();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(350, 170));
@@ -69,6 +71,7 @@ public class Profile extends javax.swing.JPanel {
         mainPanel.setDoubleBuffered(false);
         mainPanel.setMaximumSize(new java.awt.Dimension(1280, 720));
         mainPanel.setMinimumSize(new java.awt.Dimension(1280, 720));
+        mainPanel.setPreferredSize(new java.awt.Dimension(1280, 720));
         mainPanel.setLayout(new javax.swing.BoxLayout(mainPanel, javax.swing.BoxLayout.Y_AXIS));
 
         topPanel.setBackground(new java.awt.Color(63, 81, 181));
@@ -87,7 +90,7 @@ public class Profile extends javax.swing.JPanel {
         homeButton.setPreferredSize(new java.awt.Dimension(150, 30));
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goToHome(evt);
+                homeButtongoToHome(evt);
             }
         });
 
@@ -102,7 +105,7 @@ public class Profile extends javax.swing.JPanel {
         logOutButton.setPreferredSize(new java.awt.Dimension(150, 30));
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logOut(evt);
+                logOutButtonlogOut(evt);
             }
         });
 
@@ -141,13 +144,12 @@ public class Profile extends javax.swing.JPanel {
         );
 
         mainPanel.add(topPanel);
-        mainPanel.add(filler1);
 
         credentialsPanel.setBackground(new java.awt.Color(63, 81, 181));
         credentialsPanel.setBorder(null
         );
         credentialsPanel.setAlignmentY(0.3F);
-        credentialsPanel.setMaximumSize(new java.awt.Dimension(600, 300));
+        credentialsPanel.setMaximumSize(new java.awt.Dimension(600, 400));
         credentialsPanel.setLayout(new javax.swing.BoxLayout(credentialsPanel, javax.swing.BoxLayout.Y_AXIS));
 
         welcomeLabel.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
@@ -156,66 +158,51 @@ public class Profile extends javax.swing.JPanel {
         welcomeLabel.setAlignmentX(0.5F);
         welcomeLabel.setAlignmentY(0.0F);
         credentialsPanel.add(welcomeLabel);
+        credentialsPanel.add(filler12);
         credentialsPanel.add(filler4);
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Name");
+        jLabel2.setText("Role");
         jLabel2.setAlignmentX(0.5F);
         credentialsPanel.add(jLabel2);
+        credentialsPanel.add(filler13);
 
-        nameField.setBackground(new java.awt.Color(117, 125, 232));
-        nameField.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        nameField.setForeground(new java.awt.Color(255, 255, 255));
-        nameField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        nameField.setText(MainWindow.session.getUser().getName());
-        nameField.setToolTipText("Username");
-        nameField.setBorder(null);
-        nameField.setMaximumSize(new java.awt.Dimension(250, 40));
-        nameField.setMinimumSize(new java.awt.Dimension(250, 40));
-        nameField.setName("Username"); // NOI18N
-        nameField.setPreferredSize(new java.awt.Dimension(250, 40));
-        credentialsPanel.add(nameField);
+        roleField.setBackground(new java.awt.Color(117, 125, 232));
+        roleField.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
+        roleField.setForeground(new java.awt.Color(255, 255, 255));
+        roleField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        roleField.setText(MainWindow.session.getUser().getRole());
+        roleField.setToolTipText("Username");
+        roleField.setBorder(null);
+        roleField.setMaximumSize(new java.awt.Dimension(250, 40));
+        roleField.setMinimumSize(new java.awt.Dimension(250, 40));
+        roleField.setName("Username"); // NOI18N
+        roleField.setPreferredSize(new java.awt.Dimension(250, 40));
+        credentialsPanel.add(roleField);
         credentialsPanel.add(filler3);
+        credentialsPanel.add(filler11);
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Surname");
+        jLabel3.setText("Description");
         jLabel3.setAlignmentX(0.5F);
         credentialsPanel.add(jLabel3);
-
-        surnameField.setBackground(new java.awt.Color(117, 125, 232));
-        surnameField.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        surnameField.setForeground(new java.awt.Color(255, 255, 255));
-        surnameField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        surnameField.setText(MainWindow.session.getUser().getSurname());
-        surnameField.setToolTipText("Username");
-        surnameField.setBorder(null);
-        surnameField.setMaximumSize(new java.awt.Dimension(250, 40));
-        surnameField.setMinimumSize(new java.awt.Dimension(250, 40));
-        surnameField.setName("Username"); // NOI18N
-        surnameField.setPreferredSize(new java.awt.Dimension(250, 40));
-        credentialsPanel.add(surnameField);
+        credentialsPanel.add(filler10);
         credentialsPanel.add(filler5);
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 20)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Email");
-        jLabel4.setAlignmentX(0.5F);
-        credentialsPanel.add(jLabel4);
+        descriptionField.setBackground(new java.awt.Color(117, 125, 232));
+        descriptionField.setColumns(20);
+        descriptionField.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        descriptionField.setForeground(new java.awt.Color(255, 255, 255));
+        descriptionField.setRows(5);
+        descriptionField.setText(MainWindow.session.getUser().getDescription());
+        descriptionField.setBorder(null);
+        descriptionField.setMaximumSize(new java.awt.Dimension(110, 180));
+        descriptionField.setMinimumSize(new java.awt.Dimension(0, 180));
+        jScrollPane1.setViewportView(descriptionField);
 
-        emailField.setBackground(new java.awt.Color(117, 125, 232));
-        emailField.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
-        emailField.setForeground(new java.awt.Color(255, 255, 255));
-        emailField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        emailField.setText(MainWindow.session.getUser().getEmail());
-        emailField.setToolTipText("Email");
-        emailField.setBorder(null);
-        emailField.setMaximumSize(new java.awt.Dimension(250, 40));
-        emailField.setMinimumSize(new java.awt.Dimension(250, 40));
-        emailField.setName("Username"); // NOI18N
-        emailField.setPreferredSize(new java.awt.Dimension(250, 40));
-        credentialsPanel.add(emailField);
+        credentialsPanel.add(jScrollPane1);
 
         mainPanel.add(credentialsPanel);
         mainPanel.add(filler2);
@@ -226,6 +213,24 @@ public class Profile extends javax.swing.JPanel {
         buttonsPanel.setPreferredSize(new java.awt.Dimension(1280, 100));
         buttonsPanel.setLayout(new javax.swing.BoxLayout(buttonsPanel, javax.swing.BoxLayout.X_AXIS));
         buttonsPanel.add(filler6);
+
+        backButton.setBackground(new java.awt.Color(0, 59, 142));
+        backButton.setForeground(new java.awt.Color(255, 255, 255));
+        backButton.setText("Back");
+        backButton.setAlignmentX(0.5F);
+        backButton.setBorder(null);
+        backButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        backButton.setMargin(null);
+        backButton.setMaximumSize(new java.awt.Dimension(200, 50));
+        backButton.setMinimumSize(new java.awt.Dimension(200, 50));
+        backButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gotToBack(evt);
+            }
+        });
+        buttonsPanel.add(backButton);
+        buttonsPanel.add(filler9);
 
         cancelButton.setBackground(new java.awt.Color(0, 59, 142));
         cancelButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -243,24 +248,6 @@ public class Profile extends javax.swing.JPanel {
             }
         });
         buttonsPanel.add(cancelButton);
-        buttonsPanel.add(filler9);
-
-        moreInfoButton.setBackground(new java.awt.Color(0, 59, 142));
-        moreInfoButton.setForeground(new java.awt.Color(255, 255, 255));
-        moreInfoButton.setText("More info");
-        moreInfoButton.setAlignmentX(0.5F);
-        moreInfoButton.setBorder(null);
-        moreInfoButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        moreInfoButton.setMargin(null);
-        moreInfoButton.setMaximumSize(new java.awt.Dimension(200, 50));
-        moreInfoButton.setMinimumSize(new java.awt.Dimension(200, 50));
-        moreInfoButton.setPreferredSize(new java.awt.Dimension(200, 50));
-        moreInfoButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goToMoreInfo(evt);
-            }
-        });
-        buttonsPanel.add(moreInfoButton);
         buttonsPanel.add(filler8);
 
         saveButton.setBackground(new java.awt.Color(0, 59, 142));
@@ -287,69 +274,26 @@ public class Profile extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1280, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 778, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 720, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 58, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goToHome(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToHome
+    private void homeButtongoToHome(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtongoToHome
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         topFrame.getContentPane().removeAll();
         topFrame.getContentPane().add(new HomePanelLoggedIn());
         topFrame.pack();
-    }//GEN-LAST:event_goToHome
+    }//GEN-LAST:event_homeButtongoToHome
 
-    private void saveData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveData
-        MainWindow.session.getUser().setName(nameField.getText());
-        MainWindow.session.getUser().setSurname(surnameField.getText());
-        MainWindow.session.getUser().setEmail(emailField.getText());
-        //Update user in usersList not only in session
-        MainWindow.usersList.updateUser(MainWindow.session.getUser());
-        try {
-            MainWindow.session.updateUserSession();
-        } catch (IOException ex) {
-            Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-
-    }//GEN-LAST:event_saveData
-
-    private void cancelData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelData
-        // TODO add your handling code here:
-        if (!nameField.getText().equals(MainWindow.session.getUser().getName()) || !surnameField.getText().equals(MainWindow.session.getUser().getSurname()) || !emailField.getText().equals(MainWindow.session.getUser().getEmail())) {
-            nameField.setText(MainWindow.session.getUser().getName());
-            surnameField.setText(MainWindow.session.getUser().getSurname());
-            emailField.setText(MainWindow.session.getUser().getEmail());
-            //Update user in usersList not only in session
-            MainWindow.usersList.updateUser(MainWindow.session.getUser());
-            JOptionPane.showMessageDialog(null,
-                    "Modifications canceled!");
-        }
-
-    }//GEN-LAST:event_cancelData
-
-    private void goToMoreInfo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToMoreInfo
-        // TODO add your handling code here:
-        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        topFrame.getContentPane().removeAll();
-        topFrame.getContentPane().add(new MoreInfoPanel());
-        topFrame.pack();
-    }//GEN-LAST:event_goToMoreInfo
-
-    private void logOut(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOut
+    private void logOutButtonlogOut(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonlogOut
         try {
 
             MainWindow.session.setUser(null);
@@ -368,15 +312,52 @@ public class Profile extends javax.swing.JPanel {
         topFrame.pack();
         JOptionPane.showMessageDialog(null,
                 "You logged out successfully!");
-    }//GEN-LAST:event_logOut
+    }//GEN-LAST:event_logOutButtonlogOut
+
+    private void gotToBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gotToBack
+        // TODO add your handling code here:
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new Profile());
+        topFrame.pack();
+    }//GEN-LAST:event_gotToBack
+
+    private void cancelData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelData
+        // TODO add your handling code here:
+        if (!MainWindow.session.getUser().getRole().equals(roleField.getText()) || !MainWindow.session.getUser().getDescription().equals(descriptionField.getText())) {
+            roleField.setText(MainWindow.session.getUser().getRole());
+            descriptionField.setText(MainWindow.session.getUser().getDescription());
+
+            //Update user in usersList not only in session
+            //MainWindow.usersList.updateUser(MainWindow.session.getUser());
+            JOptionPane.showMessageDialog(null,
+                    "Modifications canceled!");
+        }
+
+    }//GEN-LAST:event_cancelData
+
+    private void saveData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveData
+        MainWindow.session.getUser().setRole(roleField.getText());
+        MainWindow.session.getUser().setDescription(descriptionField.getText());
+
+        //Update user in usersList not only in session
+        MainWindow.usersList.updateUser(MainWindow.session.getUser());
+        JOptionPane.showMessageDialog(null,
+                "Data saved!");
+
+    }//GEN-LAST:event_saveData
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JButton cancelButton;
     private javax.swing.JPanel credentialsPanel;
-    private javax.swing.JTextField emailField;
-    private javax.swing.Box.Filler filler1;
+    private javax.swing.JTextArea descriptionField;
+    private javax.swing.Box.Filler filler10;
+    private javax.swing.Box.Filler filler11;
+    private javax.swing.Box.Filler filler12;
+    private javax.swing.Box.Filler filler13;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
@@ -388,13 +369,11 @@ public class Profile extends javax.swing.JPanel {
     private javax.swing.JButton homeButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton logOutButton;
     private javax.swing.JPanel mainPanel;
-    private javax.swing.JButton moreInfoButton;
-    private javax.swing.JTextField nameField;
+    private javax.swing.JTextField roleField;
     private javax.swing.JButton saveButton;
-    private javax.swing.JTextField surnameField;
     private javax.swing.JPanel topPanel;
     private javax.swing.JLabel welcomeLabel;
     private javax.swing.JLabel welcomeLabel1;

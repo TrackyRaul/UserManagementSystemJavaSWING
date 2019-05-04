@@ -16,12 +16,17 @@ import javax.swing.SwingUtilities;
  *
  * @author raul
  */
-public class Profile extends javax.swing.JPanel {
+public class AdminUserProfileViewPanel extends javax.swing.JPanel {
+
+    private User refUser;
 
     /**
-     * Creates new form Profile
+     * Creates new form AdminUserProfileViewPanel
+     *
+     * @param user
      */
-    public Profile() {
+    public AdminUserProfileViewPanel(User user) {
+        refUser = user;
         initComponents();
     }
 
@@ -60,6 +65,7 @@ public class Profile extends javax.swing.JPanel {
         filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(50, 170));
         saveButton = new javax.swing.JButton();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(350, 170));
+        backButton = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -87,7 +93,7 @@ public class Profile extends javax.swing.JPanel {
         homeButton.setPreferredSize(new java.awt.Dimension(150, 30));
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goToHome(evt);
+                homeButtongoToHome(evt);
             }
         });
 
@@ -102,7 +108,7 @@ public class Profile extends javax.swing.JPanel {
         logOutButton.setPreferredSize(new java.awt.Dimension(150, 30));
         logOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logOut(evt);
+                logOutButtonlogOut(evt);
             }
         });
 
@@ -152,7 +158,7 @@ public class Profile extends javax.swing.JPanel {
 
         welcomeLabel.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
         welcomeLabel.setForeground(new java.awt.Color(255, 255, 255));
-        welcomeLabel.setText("User: "+MainWindow.session.getUser().getUsername());
+        welcomeLabel.setText("User: "+this.refUser.getUsername());
         welcomeLabel.setAlignmentX(0.5F);
         welcomeLabel.setAlignmentY(0.0F);
         credentialsPanel.add(welcomeLabel);
@@ -168,7 +174,7 @@ public class Profile extends javax.swing.JPanel {
         nameField.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         nameField.setForeground(new java.awt.Color(255, 255, 255));
         nameField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        nameField.setText(MainWindow.session.getUser().getName());
+        nameField.setText(this.refUser.getName());
         nameField.setToolTipText("Username");
         nameField.setBorder(null);
         nameField.setMaximumSize(new java.awt.Dimension(250, 40));
@@ -188,7 +194,7 @@ public class Profile extends javax.swing.JPanel {
         surnameField.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         surnameField.setForeground(new java.awt.Color(255, 255, 255));
         surnameField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        surnameField.setText(MainWindow.session.getUser().getSurname());
+        surnameField.setText(this.refUser.getSurname());
         surnameField.setToolTipText("Username");
         surnameField.setBorder(null);
         surnameField.setMaximumSize(new java.awt.Dimension(250, 40));
@@ -208,7 +214,7 @@ public class Profile extends javax.swing.JPanel {
         emailField.setFont(new java.awt.Font("Dialog", 0, 20)); // NOI18N
         emailField.setForeground(new java.awt.Color(255, 255, 255));
         emailField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        emailField.setText(MainWindow.session.getUser().getEmail());
+        emailField.setText(this.refUser.getEmail());
         emailField.setToolTipText("Email");
         emailField.setBorder(null);
         emailField.setMaximumSize(new java.awt.Dimension(250, 40));
@@ -239,7 +245,7 @@ public class Profile extends javax.swing.JPanel {
         cancelButton.setPreferredSize(new java.awt.Dimension(200, 50));
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelData(evt);
+                cancelButtoncancelData(evt);
             }
         });
         buttonsPanel.add(cancelButton);
@@ -275,13 +281,29 @@ public class Profile extends javax.swing.JPanel {
         saveButton.setPreferredSize(new java.awt.Dimension(200, 50));
         saveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                saveData(evt);
+                saveButton(evt);
             }
         });
         buttonsPanel.add(saveButton);
         buttonsPanel.add(filler7);
 
         mainPanel.add(buttonsPanel);
+
+        backButton.setBackground(new java.awt.Color(0, 59, 142));
+        backButton.setForeground(new java.awt.Color(255, 255, 255));
+        backButton.setText("Back");
+        backButton.setAlignmentX(0.5F);
+        backButton.setBorder(null);
+        backButton.setBorderPainted(false);
+        backButton.setMargin(null);
+        backButton.setMaximumSize(new java.awt.Dimension(200, 50));
+        backButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        backButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backButtongoToBack(evt);
+            }
+        });
+        mainPanel.add(backButton);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -305,51 +327,14 @@ public class Profile extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void goToHome(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToHome
+    private void homeButtongoToHome(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtongoToHome
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         topFrame.getContentPane().removeAll();
         topFrame.getContentPane().add(new HomePanelLoggedIn());
         topFrame.pack();
-    }//GEN-LAST:event_goToHome
+    }//GEN-LAST:event_homeButtongoToHome
 
-    private void saveData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveData
-        MainWindow.session.getUser().setName(nameField.getText());
-        MainWindow.session.getUser().setSurname(surnameField.getText());
-        MainWindow.session.getUser().setEmail(emailField.getText());
-        //Update user in usersList not only in session
-        MainWindow.usersList.updateUser(MainWindow.session.getUser());
-        try {
-            MainWindow.session.updateUserSession();
-        } catch (IOException ex) {
-            Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
-        }
-       
-
-    }//GEN-LAST:event_saveData
-
-    private void cancelData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelData
-        // TODO add your handling code here:
-        if (!nameField.getText().equals(MainWindow.session.getUser().getName()) || !surnameField.getText().equals(MainWindow.session.getUser().getSurname()) || !emailField.getText().equals(MainWindow.session.getUser().getEmail())) {
-            nameField.setText(MainWindow.session.getUser().getName());
-            surnameField.setText(MainWindow.session.getUser().getSurname());
-            emailField.setText(MainWindow.session.getUser().getEmail());
-            //Update user in usersList not only in session
-            MainWindow.usersList.updateUser(MainWindow.session.getUser());
-            JOptionPane.showMessageDialog(null,
-                    "Modifications canceled!");
-        }
-
-    }//GEN-LAST:event_cancelData
-
-    private void goToMoreInfo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToMoreInfo
-        // TODO add your handling code here:
-        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        topFrame.getContentPane().removeAll();
-        topFrame.getContentPane().add(new MoreInfoPanel());
-        topFrame.pack();
-    }//GEN-LAST:event_goToMoreInfo
-
-    private void logOut(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOut
+    private void logOutButtonlogOut(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonlogOut
         try {
 
             MainWindow.session.setUser(null);
@@ -368,10 +353,58 @@ public class Profile extends javax.swing.JPanel {
         topFrame.pack();
         JOptionPane.showMessageDialog(null,
                 "You logged out successfully!");
-    }//GEN-LAST:event_logOut
+    }//GEN-LAST:event_logOutButtonlogOut
+
+    private void cancelButtoncancelData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtoncancelData
+        // TODO add your handling code here:
+        if (!nameField.getText().equals(refUser.getName()) || !surnameField.getText().equals(refUser.getSurname()) || !emailField.getText().equals(refUser.getEmail())) {
+            nameField.setText(refUser.getName());
+            surnameField.setText(refUser.getSurname());
+            emailField.setText(refUser.getEmail());
+            //Update user in usersList not only in session
+            MainWindow.usersList.updateUser(refUser);
+            JOptionPane.showMessageDialog(null,
+                    "Modifications canceled!");
+        }
+    }//GEN-LAST:event_cancelButtoncancelData
+
+    private void saveButton(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButton
+        refUser.setName(nameField.getText());
+        refUser.setSurname(surnameField.getText());
+        refUser.setEmail(emailField.getText());
+        //Update user in usersList not only in session
+        MainWindow.usersList.updateUser(refUser);
+        JOptionPane.showMessageDialog(null,
+                "Data saved!");
+        if (MainWindow.session.getUser().getUsername().equals(refUser.getUsername())) {
+            MainWindow.usersList.updateUser(refUser);
+            try {
+                MainWindow.session.updateUserSession();
+            } catch (IOException ex) {
+                Logger.getLogger(Profile.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+    }//GEN-LAST:event_saveButton
+
+    private void backButtongoToBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtongoToBack
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new AdminUsersAndSignaturesPanel());
+        topFrame.pack();
+    }//GEN-LAST:event_backButtongoToBack
+
+    private void goToMoreInfo(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToMoreInfo
+        // TODO add your handling code here:
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new AdminMoreInfoViewPanel(this.refUser));
+        topFrame.pack();
+    }//GEN-LAST:event_goToMoreInfo
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backButton;
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JButton cancelButton;
     private javax.swing.JPanel credentialsPanel;

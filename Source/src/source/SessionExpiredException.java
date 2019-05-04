@@ -7,7 +7,7 @@ package source;
 
 /**
  *
- * @author raul
+ * @author Raul Farkas
  */
 public class SessionExpiredException extends Exception {
 

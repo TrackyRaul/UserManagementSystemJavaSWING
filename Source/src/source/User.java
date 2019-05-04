@@ -19,9 +19,27 @@ public class User implements Serializable {
     /**
      *
      */
+    public String role;
+
+    /**
+     *
+     */
     public User() {
 
     }
+
+    /**
+     *
+     * @return
+     */
+    @Override
+    public String toString() {
+        return "User{" + "username=" + username + ", name=" + name + ", surname=" + surname + ", password=" + password + ", email=" + email + ", blocked=" + blocked + ", description=" + description + ", role=" + role + '}';
+    }
+
+    
+    
+    
 
     /**
      * Constructor
@@ -37,6 +55,10 @@ public class User implements Serializable {
         this.blocked = false;
     }
 
+    /**
+     *
+     * @param usr
+     */
     public User(User usr) {
         this.username = usr.getUsername();
         this.name = usr.getName();
@@ -45,6 +67,7 @@ public class User implements Serializable {
         this.email = usr.getEmail();
         this.blocked = usr.isBlocked();
         this.description = usr.getDescription();
+        this.role = usr.getRole();
     }
     
     
@@ -135,6 +158,20 @@ public String getUsername() {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    /**
+     * @return the role
+     */
+    public String getRole() {
+        return role;
+    }
+
+    /**
+     * @param role the role to set
+     */
+    public void setRole(String role) {
+        this.role = role;
     }
     
     

@@ -17,7 +17,10 @@ import java.util.logging.Logger;
  */
 public class UsersList implements Serializable {
 
-    private ArrayList<User> users;
+    /**
+     *
+     */
+    public ArrayList<User> users;
 
     /**
      * Constructor
@@ -39,7 +42,7 @@ public class UsersList implements Serializable {
      */
     public User login(String username, String password) throws UserDoesNotExistException {
         User usr = null;
-        for (User user : this.users) {
+        for (User user : this.getUsers()) {
 
             if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
                 usr = user;
@@ -53,15 +56,15 @@ public class UsersList implements Serializable {
     }
 
     /**
-     * Register if user not already registered
+     * register if user not already registered
      *
      * @param username
      * @param email
      * @param password
      * @throws UserAlreadyExistsException
      */
-    public void Register(String username, String email, String password) throws UserAlreadyExistsException {
-        
+    public void register(String username, String email, String password) throws UserAlreadyExistsException {
+
         User newUser = null;
         if (!doesUserExist(username)) {
             if (username.contains("admin")) {
@@ -69,7 +72,7 @@ public class UsersList implements Serializable {
             } else {
                 newUser = new User(username, email, password);
             }
-            users.add(newUser);
+            getUsers().add(newUser);
         } else {
             throw new UserAlreadyExistsException("A user with the same username is already registered!");
         }
@@ -86,9 +89,9 @@ public class UsersList implements Serializable {
      * @param username
      */
     public void removeUser(String username) {
-        for (User user : this.users) {
+        for (User user : this.getUsers()) {
             if (user.getUsername().equals(username)) {
-                this.users.remove(user);
+                this.getUsers().remove(user);
             }
         }
         try {
@@ -107,7 +110,7 @@ public class UsersList implements Serializable {
      */
     public boolean doesUserExist(String username) {
         boolean ret = false;
-        for (User user : this.users) {
+        for (User user : this.getUsers()) {
             if (user.getUsername().equals(username)) {
                 ret = true;
             }
@@ -118,12 +121,28 @@ public class UsersList implements Serializable {
     }
 
     /**
+     *
+     * @param username
+     * @return
+     */
+    public User getByUsername(String username) {
+        User ret = null;
+        for (User user : this.getUsers()) {
+            if (user.getUsername().equals(username)) {
+                ret = user;
+            }
+        }
+
+        return ret;
+    }
+
+    /**
      * Block user
      *
      * @param username
      */
     public void block(String username) {
-        for (User user : this.users) {
+        for (User user : this.getUsers()) {
             if (user.getUsername().equals(username)) {
                 user.setBlocked(true);
             }
@@ -143,7 +162,7 @@ public class UsersList implements Serializable {
      * @param username
      */
     public void unBlock(String username) {
-        for (User user : this.users) {
+        for (User user : this.getUsers()) {
             if (user.getUsername().equals(username)) {
                 user.setBlocked(false);
             }
@@ -156,13 +175,25 @@ public class UsersList implements Serializable {
         }
 
     }
-    
-    public void updateUser(User user){
-        for(int i = 0; i<users.size();i++){
-            if(users.get(i).getUsername().equals(user.getUsername())){
-                users.set(i, user);
+
+    /**
+     *
+     * @param user
+     */
+    public void updateUser(User user) {
+        for (int i = 0; i < getUsers().size(); i++) {
+            if (getUsers().get(i).getUsername().equals(user.getUsername())) {
+                if (user.getClass().getName().contains("Admin")) {
+                    getUsers().set(i, new Admin(user));
+                }else{
+                    getUsers().set(i, new User(user));
+                }
+
+                break;
             }
         }
+        //System.out.println(getUsers());
+
         try {
             serialize();
         } catch (IOException ex) {
@@ -179,7 +210,7 @@ public class UsersList implements Serializable {
     public void serialize() throws FileNotFoundException, IOException {
         FileOutputStream fileOut = new FileOutputStream("./data/users.ser");
         ObjectOutputStream out = new ObjectOutputStream(fileOut);
-        out.writeObject(this.users);
+        out.writeObject(this.getUsers());
         out.close();
         fileOut.close();
     }
@@ -193,7 +224,7 @@ public class UsersList implements Serializable {
         try {
             fileIn = new FileInputStream("./data/users.ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
-            this.users = (ArrayList<User>) in.readObject();
+            this.setUsers((ArrayList<User>) in.readObject());
             in.close();
             fileIn.close();
         } catch (FileNotFoundException ex) {
@@ -209,5 +240,19 @@ public class UsersList implements Serializable {
             Logger.getLogger(UsersList.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    /**
+     * @return the users
+     */
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
+    /**
+     * @param users the users to set
+     */
+    public void setUsers(ArrayList<User> users) {
+        this.users = users;
     }
 }

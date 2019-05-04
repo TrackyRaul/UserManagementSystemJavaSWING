@@ -31,8 +31,18 @@ public class Session implements Serializable {
         this.lastLogin = LocalDateTime.now();
 
         deserialize();
+        //this.user = MainWindow.usersList.getByUsername(this.user.getUsername());
+        
     }
     
+    /**
+     *
+     * @throws IOException
+     */
+    public void updateUserSession() throws IOException{
+        this.user = MainWindow.usersList.getByUsername(this.user.getUsername());
+        serialize();
+    }
 
     /**
      * Serialize session
@@ -63,17 +73,17 @@ public class Session implements Serializable {
             this.user = (User) in.readObject();
             this.lastLogin = (LocalDateTime) in.readObject();
             //Set it to null if 
-            if (LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) > this.lastLogin.toEpochSecond(ZoneOffset.UTC)+ 1800  && this.user != null) {
+            if (LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) > this.lastLogin.toEpochSecond(ZoneOffset.UTC) + 1800 && this.user != null) {
                 this.user = null;
                 this.lastLogin = null;
                 serialize();
                 throw new SessionExpiredException("Session has expired!");
-                
+
             }
             in.close();
             fileIn.close();
         } catch (FileNotFoundException ex) {
-            
+
             try {
                 serialize();
             } catch (IOException ex1) {
@@ -89,7 +99,7 @@ public class Session implements Serializable {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(Session.class.getName()).log(Level.SEVERE, null, ex);
         } catch (NullPointerException ex) {
-            
+
             try {
                 serialize();
             } catch (IOException ex1) {

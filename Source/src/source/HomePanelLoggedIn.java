@@ -33,8 +33,8 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
         }
         initComponents();
         welcomeLabel.setText("Welcome, " + MainWindow.session.getUser().getUsername());
-        
-         //Load quotes
+
+        //Load quotes
         try {
             this.quotes = new Quotes();
             this.quoteTextArea.setText(quotes.random());
@@ -296,8 +296,19 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
     }//GEN-LAST:event_motivationalQuoteLabelrefreshRandom
 
     private void goToUserArea(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToUserArea
-        // TODO add your handling code here:
-        
+
+        if (MainWindow.session.getUser().getClass().getName().contains("Admin")) {
+            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.getContentPane().removeAll();
+            topFrame.getContentPane().add(new AdminUserSignPresencePanel());
+            topFrame.pack();
+        } else {
+            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.getContentPane().removeAll();
+            topFrame.getContentPane().add(new RegularUserSignPresencePanel());
+            topFrame.pack();
+        }
+
     }//GEN-LAST:event_goToUserArea
 
     private void enterButton1enterUserArea(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButton1enterUserArea
@@ -306,7 +317,7 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
 
     private void logOut(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOut
         try {
-            
+
             MainWindow.session.setUser(null);
         } catch (IOException ex) {
             Logger.getLogger(HomePanelLoggedIn.class.getName()).log(Level.SEVERE, null, ex);
@@ -316,8 +327,7 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
             topFrame.pack();
             return;
         }
-        
-        
+
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
         topFrame.getContentPane().removeAll();
         topFrame.getContentPane().add(new MainPanel());

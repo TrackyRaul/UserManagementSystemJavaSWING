@@ -25,6 +25,7 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
      */
     public HomePanelLoggedIn() {
         //If there is no user logged in go to MainPanel
+        //Load session
         if (MainWindow.session.getUser() == null) {
             JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
             topFrame.getContentPane().removeAll();
@@ -65,7 +66,6 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
         motivationalQuoteLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         quoteTextArea = new javax.swing.JTextArea();
-        enterButton1 = new javax.swing.JButton();
         filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 50));
         buttonsPanel = new javax.swing.JPanel();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(540, 0), new java.awt.Dimension(540, 0), new java.awt.Dimension(540, 540));
@@ -199,20 +199,6 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
         quoteTextArea.setWrapStyleWord(true);
         jScrollPane1.setViewportView(quoteTextArea);
 
-        enterButton1.setBackground(new java.awt.Color(0, 59, 142));
-        enterButton1.setForeground(new java.awt.Color(255, 255, 255));
-        enterButton1.setText("Enter");
-        enterButton1.setBorder(null);
-        enterButton1.setBorderPainted(false);
-        enterButton1.setMargin(null);
-        enterButton1.setMaximumSize(new java.awt.Dimension(200, 50));
-        enterButton1.setPreferredSize(new java.awt.Dimension(200, 50));
-        enterButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enterButton1enterUserArea(evt);
-            }
-        });
-
         javax.swing.GroupLayout quotePanelLayout = new javax.swing.GroupLayout(quotePanel);
         quotePanel.setLayout(quotePanelLayout);
         quotePanelLayout.setHorizontalGroup(
@@ -222,11 +208,6 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(quotePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(quotePanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(enterButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         quotePanelLayout.setVerticalGroup(
             quotePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,11 +216,6 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 235, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(quotePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(quotePanelLayout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(enterButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         mainPanel.add(quotePanel);
@@ -291,7 +267,7 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void motivationalQuoteLabelrefreshRandom(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_motivationalQuoteLabelrefreshRandom
-        // TODO add your handling code here:
+        //Choose a random quote
         this.quoteTextArea.setText(this.quotes.random());
     }//GEN-LAST:event_motivationalQuoteLabelrefreshRandom
 
@@ -310,10 +286,6 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
         }
 
     }//GEN-LAST:event_goToUserArea
-
-    private void enterButton1enterUserArea(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enterButton1enterUserArea
-        // TODO add your handling code here:
-    }//GEN-LAST:event_enterButton1enterUserArea
 
     private void logOut(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOut
         try {
@@ -348,7 +320,6 @@ public class HomePanelLoggedIn extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonsPanel;
     private javax.swing.JButton enterButton;
-    private javax.swing.JButton enterButton1;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;

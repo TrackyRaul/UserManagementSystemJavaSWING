@@ -18,7 +18,7 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author raul
+ * @author Raul Farkas
  */
 public class AdminUsersAndSignaturesPanel extends javax.swing.JPanel {
 
@@ -261,6 +261,10 @@ public class AdminUsersAndSignaturesPanel extends javax.swing.JPanel {
 
     private void goToSignatures(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToSignatures
         // TODO add your handling code here:
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new AdminSignaturesListPanel());
+        topFrame.pack();
     }//GEN-LAST:event_goToSignatures
 
     private void backButtongoToBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtongoToBack

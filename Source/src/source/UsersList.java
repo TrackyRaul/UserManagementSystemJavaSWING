@@ -39,8 +39,9 @@ public class UsersList implements Serializable {
      * @param password
      * @return
      * @throws UserDoesNotExistException
+     * @throws source.UserBlockedException
      */
-    public User login(String username, String password) throws UserDoesNotExistException {
+    public User login(String username, String password) throws UserDoesNotExistException, UserBlockedException {
         User usr = null;
         for (User user : this.getUsers()) {
 
@@ -49,8 +50,12 @@ public class UsersList implements Serializable {
                 break;
             }
         }
+        
         if (usr == null) {
             throw new UserDoesNotExistException("User does not exist or wrong password!");
+        }
+        if(usr.isBlocked()){
+            throw new UserBlockedException("User is blocked, contact administrator!");
         }
         return usr;
     }
@@ -92,6 +97,7 @@ public class UsersList implements Serializable {
         for (User user : this.getUsers()) {
             if (user.getUsername().equals(username)) {
                 this.getUsers().remove(user);
+                break;
             }
         }
         try {

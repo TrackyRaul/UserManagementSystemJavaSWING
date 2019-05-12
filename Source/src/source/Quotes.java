@@ -103,7 +103,6 @@ public class Quotes {
                 }
 
             }
-            System.out.println(this.quotes.toString());
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Quotes.class.getName()).log(Level.SEVERE, null, ex);
         }

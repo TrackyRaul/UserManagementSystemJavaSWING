@@ -150,11 +150,6 @@ public class LoginPanel extends javax.swing.JPanel {
         passwordField.setMaximumSize(new java.awt.Dimension(250, 40));
         passwordField.setMinimumSize(new java.awt.Dimension(250, 40));
         passwordField.setPreferredSize(new java.awt.Dimension(250, 40));
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
         credentialsPanel.add(passwordField);
 
         mainPanel.add(credentialsPanel);
@@ -207,10 +202,6 @@ public class LoginPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
     private void goToHome(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToHome
 
         JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
@@ -238,6 +229,13 @@ public class LoginPanel extends javax.swing.JPanel {
         } catch (IOException ex) {
             Logger.getLogger(LoginPanel.class.getName()).log(Level.SEVERE, null, ex);
             return;
+        } catch (UserBlockedException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "User is blocked, can't sign-in!",
+                    "Inane error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+            
         }
         JOptionPane.showMessageDialog(null,
                 "Welcome " + username);

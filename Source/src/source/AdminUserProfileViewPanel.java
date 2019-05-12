@@ -14,7 +14,7 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author raul
+ * @author Raul Farkas
  */
 public class AdminUserProfileViewPanel extends javax.swing.JPanel {
 
@@ -65,7 +65,14 @@ public class AdminUserProfileViewPanel extends javax.swing.JPanel {
         filler8 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(50, 170));
         saveButton = new javax.swing.JButton();
         filler7 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(350, 170));
+        buttonsPanel1 = new javax.swing.JPanel();
+        filler10 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(350, 170));
+        removeUserButton = new javax.swing.JButton();
+        filler11 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(50, 170));
         backButton = new javax.swing.JButton();
+        filler12 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(50, 170));
+        blockUnblockUser = new javax.swing.JButton();
+        filler13 = new javax.swing.Box.Filler(new java.awt.Dimension(0, 170), new java.awt.Dimension(0, 170), new java.awt.Dimension(350, 170));
 
         setMaximumSize(new java.awt.Dimension(1280, 720));
         setMinimumSize(new java.awt.Dimension(1280, 720));
@@ -158,7 +165,11 @@ public class AdminUserProfileViewPanel extends javax.swing.JPanel {
 
         welcomeLabel.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
         welcomeLabel.setForeground(new java.awt.Color(255, 255, 255));
-        welcomeLabel.setText("User: "+this.refUser.getUsername());
+        String userStatus = "Not blocked";
+        if(this.refUser.isBlocked()){
+            userStatus = "Blocked";
+        }
+        welcomeLabel.setText("User: "+this.refUser.getUsername() + " ("+userStatus+")");
         welcomeLabel.setAlignmentX(0.5F);
         welcomeLabel.setAlignmentY(0.0F);
         credentialsPanel.add(welcomeLabel);
@@ -289,6 +300,31 @@ public class AdminUserProfileViewPanel extends javax.swing.JPanel {
 
         mainPanel.add(buttonsPanel);
 
+        buttonsPanel1.setBackground(new java.awt.Color(63, 81, 181));
+        buttonsPanel1.setAlignmentY(0.0F);
+        buttonsPanel1.setMaximumSize(new java.awt.Dimension(1280, 100));
+        buttonsPanel1.setPreferredSize(new java.awt.Dimension(1280, 100));
+        buttonsPanel1.setLayout(new javax.swing.BoxLayout(buttonsPanel1, javax.swing.BoxLayout.X_AXIS));
+        buttonsPanel1.add(filler10);
+
+        removeUserButton.setBackground(new java.awt.Color(0, 59, 142));
+        removeUserButton.setForeground(new java.awt.Color(255, 255, 255));
+        removeUserButton.setText("Remove user");
+        removeUserButton.setAlignmentX(0.5F);
+        removeUserButton.setBorder(null);
+        removeUserButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        removeUserButton.setMargin(null);
+        removeUserButton.setMaximumSize(new java.awt.Dimension(200, 50));
+        removeUserButton.setMinimumSize(new java.awt.Dimension(200, 50));
+        removeUserButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        removeUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeUser(evt);
+            }
+        });
+        buttonsPanel1.add(removeUserButton);
+        buttonsPanel1.add(filler11);
+
         backButton.setBackground(new java.awt.Color(0, 59, 142));
         backButton.setForeground(new java.awt.Color(255, 255, 255));
         backButton.setText("Back");
@@ -303,7 +339,28 @@ public class AdminUserProfileViewPanel extends javax.swing.JPanel {
                 backButtongoToBack(evt);
             }
         });
-        mainPanel.add(backButton);
+        buttonsPanel1.add(backButton);
+        buttonsPanel1.add(filler12);
+
+        blockUnblockUser.setBackground(new java.awt.Color(0, 59, 142));
+        blockUnblockUser.setForeground(new java.awt.Color(255, 255, 255));
+        blockUnblockUser.setText("Block/Unblock user");
+        blockUnblockUser.setAlignmentX(0.5F);
+        blockUnblockUser.setBorder(null);
+        blockUnblockUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        blockUnblockUser.setMargin(null);
+        blockUnblockUser.setMaximumSize(new java.awt.Dimension(200, 50));
+        blockUnblockUser.setMinimumSize(new java.awt.Dimension(200, 50));
+        blockUnblockUser.setPreferredSize(new java.awt.Dimension(200, 50));
+        blockUnblockUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blockUnblockUserButton(evt);
+            }
+        });
+        buttonsPanel1.add(blockUnblockUser);
+        buttonsPanel1.add(filler13);
+
+        mainPanel.add(buttonsPanel1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -402,14 +459,53 @@ public class AdminUserProfileViewPanel extends javax.swing.JPanel {
         topFrame.pack();
     }//GEN-LAST:event_goToMoreInfo
 
+    private void removeUser(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeUser
+        // TODO add your handling code here:
+        MainWindow.usersList.removeUser(this.refUser.getUsername());
+        JOptionPane.showMessageDialog(null,
+                "User removed!");
+        
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new AdminUsersListPanel());
+        topFrame.pack();
+        
+    }//GEN-LAST:event_removeUser
+
+    private void blockUnblockUserButton(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blockUnblockUserButton
+        //Block or unblock user
+        
+        this.refUser.setBlocked(!this.refUser.isBlocked());
+        if(this.refUser.isBlocked()){
+            JOptionPane.showMessageDialog(null,
+                "User blocked!");
+        }else{
+            JOptionPane.showMessageDialog(null,
+                "User un-blocked!");
+        }
+        
+        MainWindow.usersList.updateUser(refUser);
+        
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new AdminUserProfileViewPanel(this.refUser));
+        topFrame.pack();
+    }//GEN-LAST:event_blockUnblockUserButton
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
+    private javax.swing.JButton blockUnblockUser;
     private javax.swing.JPanel buttonsPanel;
+    private javax.swing.JPanel buttonsPanel1;
     private javax.swing.JButton cancelButton;
     private javax.swing.JPanel credentialsPanel;
     private javax.swing.JTextField emailField;
     private javax.swing.Box.Filler filler1;
+    private javax.swing.Box.Filler filler10;
+    private javax.swing.Box.Filler filler11;
+    private javax.swing.Box.Filler filler12;
+    private javax.swing.Box.Filler filler13;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
@@ -426,6 +522,7 @@ public class AdminUserProfileViewPanel extends javax.swing.JPanel {
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton moreInfoButton;
     private javax.swing.JTextField nameField;
+    private javax.swing.JButton removeUserButton;
     private javax.swing.JButton saveButton;
     private javax.swing.JTextField surnameField;
     private javax.swing.JPanel topPanel;

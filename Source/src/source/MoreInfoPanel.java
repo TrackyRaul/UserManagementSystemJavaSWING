@@ -337,6 +337,7 @@ public class MoreInfoPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelData
 
     private void saveData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveData
+        //Save data
         MainWindow.session.getUser().setRole(roleField.getText());
         MainWindow.session.getUser().setDescription(descriptionField.getText());
 

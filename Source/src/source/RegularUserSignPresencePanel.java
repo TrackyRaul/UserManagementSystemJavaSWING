@@ -32,7 +32,10 @@ public class RegularUserSignPresencePanel extends javax.swing.JPanel {
         welcomeLabel.setText("Welcome, " + MainWindow.session.getUser().getUsername());
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         todayLabel.setText("Today: " + formatter.format(new Date()));
-        
+        Signature yourSignature = MainWindow.signatureList.getByUserToday(MainWindow.session.getUser().getUsername());
+        if (yourSignature != null) {
+            this.alreadySignedLabel.setText("You signed on " + yourSignature.getDateTime().format(DateTimeFormatter.ofPattern("dd-MM-YYYY")) + " at " + yourSignature.getDateTime().format(DateTimeFormatter.ofPattern("hh:mm:ss a\t")));
+        }
 
     }
 
@@ -52,7 +55,10 @@ public class RegularUserSignPresencePanel extends javax.swing.JPanel {
         goToProfileButton = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(500, 0), new java.awt.Dimension(500, 0), new java.awt.Dimension(20, 100));
         todayLabel = new javax.swing.JLabel();
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(500, 0), new java.awt.Dimension(500, 0), new java.awt.Dimension(20, 70));
+        jPanel1 = new javax.swing.JPanel();
+        filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 32767));
+        alreadySignedLabel = new javax.swing.JLabel();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(500, 0), new java.awt.Dimension(500, 0), new java.awt.Dimension(20, 30));
         signButton = new javax.swing.JButton();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 50));
         signedReference = new javax.swing.JLabel();
@@ -143,6 +149,21 @@ public class RegularUserSignPresencePanel extends javax.swing.JPanel {
         todayLabel.setText("Today: ");
         todayLabel.setAlignmentX(0.5F);
         mainPanel.add(todayLabel);
+
+        jPanel1.setBackground(new java.awt.Color(63, 81, 181));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 50));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 50));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 50));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
+        jPanel1.add(filler4);
+
+        alreadySignedLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        alreadySignedLabel.setForeground(new java.awt.Color(255, 255, 255));
+        alreadySignedLabel.setText("You haven't signed yet!");
+        alreadySignedLabel.setAlignmentX(0.5F);
+        jPanel1.add(alreadySignedLabel);
+
+        mainPanel.add(jPanel1);
         mainPanel.add(filler2);
 
         signButton.setBackground(new java.awt.Color(0, 59, 142));
@@ -219,16 +240,21 @@ public class RegularUserSignPresencePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_goToProfileButtongoToProfile
 
     private void signNow(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signNow
+        //Sign now
         try {
             try {
                 // TODO add your handling code here:
                 MainWindow.signatureList.signNow(MainWindow.session.getUser());
                 JOptionPane.showMessageDialog(null,
-                "You signed at: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh.mm a\t dd/MM/yyyy"))+"\n successfully!");
+                        "You signed at: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh.mm a\t dd/MM/yyyy")) + "\n successfully!");
+                JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                topFrame.getContentPane().removeAll();
+                topFrame.getContentPane().add(new RegularUserSignPresencePanel());
+                topFrame.pack();
             } catch (UserAlreadySignedException ex) {
-                
+
                 JOptionPane.showMessageDialog(null,
-                        "You signed at: " + MainWindow.signatureList.getByUserToday(MainWindow.session.getUser().getUsername()).getDateTime().format(DateTimeFormatter.ofPattern("hh.mm a\t dd/MM/yyyy"))+"\nCan't do that again!",
+                        "You signed at: " + MainWindow.signatureList.getByUserToday(MainWindow.session.getUser().getUsername()).getDateTime().format(DateTimeFormatter.ofPattern("hh.mm a\t dd/MM/yyyy")) + "\nCan't do that again!",
                         "Inane error",
                         JOptionPane.ERROR_MESSAGE);
 
@@ -240,10 +266,13 @@ public class RegularUserSignPresencePanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel alreadySignedLabel;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
+    private javax.swing.Box.Filler filler4;
     private javax.swing.JButton goToProfileButton;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JButton logOutButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton signButton;

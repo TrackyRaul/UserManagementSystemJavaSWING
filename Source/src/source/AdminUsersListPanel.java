@@ -29,8 +29,11 @@ public class AdminUsersListPanel extends javax.swing.JPanel {
      * Creates new form AdminUsersListPanel
      */
     public AdminUsersListPanel() {
+        //Load users list
         for (User user : MainWindow.usersList.getUsers()) {
-            listModel.addElement(user.getUsername());
+            if (!user.getUsername().equals(MainWindow.session.getUser().getUsername())) {
+                listModel.addElement(user.getUsername());
+            }
         }
 
         initComponents();
@@ -234,15 +237,24 @@ public class AdminUsersListPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_logOutButtonlogOut
 
     private void selectElement(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_selectElement
-        // TODO add your handling code here:
-        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
-        topFrame.getContentPane().removeAll();
-        topFrame.getContentPane().add(new AdminUserProfileViewPanel(MainWindow.usersList.getByUsername(usersList.getSelectedValue())));
-        topFrame.pack();
+        //Select element from list
+        String selectedValue = usersList.getSelectedValue();
+        if (selectedValue != null) {
+         
+            JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+            topFrame.getContentPane().removeAll();
+            topFrame.getContentPane().add(new AdminUserProfileViewPanel(MainWindow.usersList.getByUsername(selectedValue)));
+            topFrame.pack();
+        }
+
     }//GEN-LAST:event_selectElement
 
     private void goToProfileButton1goToProfile(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToProfileButton1goToProfile
         // TODO add your handling code here:
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new Profile());
+        topFrame.pack();
     }//GEN-LAST:event_goToProfileButton1goToProfile
 
     private void goToBack(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToBack

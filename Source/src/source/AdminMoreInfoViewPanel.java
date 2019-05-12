@@ -14,12 +14,15 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author raul
+ *
+ * @author Raul Farkas
  */
 public class AdminMoreInfoViewPanel extends javax.swing.JPanel {
     private User refUser;
+    
     /**
      * Creates new form AdminMoreInfoViewPanel
+     * @param user
      */
     public AdminMoreInfoViewPanel(User user) {
         refUser = user;
@@ -324,7 +327,7 @@ public class AdminMoreInfoViewPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backButtongotToBack
 
     private void cancelButtoncancelData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtoncancelData
-        // TODO add your handling code here:
+        //Remove inserted data
         if (!this.refUser.getRole().equals(roleField.getText()) || !this.refUser.getDescription().equals(descriptionField.getText())) {
             roleField.setText(this.refUser.getRole());
             descriptionField.setText(this.refUser.getDescription());
@@ -337,6 +340,7 @@ public class AdminMoreInfoViewPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cancelButtoncancelData
 
     private void saveButtonsaveData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonsaveData
+        //Save inserted data
         this.refUser.setRole(roleField.getText());
         this.refUser.setDescription(descriptionField.getText());
 
@@ -346,7 +350,6 @@ public class AdminMoreInfoViewPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null,
                 "Data saved!");
         if (MainWindow.session.getUser().getUsername().equals(refUser.getUsername())) {
-            System.out.println("Yesss");
             MainWindow.usersList.updateUser(refUser);
             try {
                 MainWindow.session.updateUserSession();

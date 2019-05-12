@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.ArrayList;
@@ -40,11 +41,12 @@ public class SignatureList {
      */
     public void signNow(User user) throws IOException, UserAlreadySignedException {
         for (Signature s : getList()) {
-            if (s.getDateTime().toEpochSecond(ZoneOffset.UTC) > LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) - 86400 && s.getUser().getUsername().equals(user.getUsername())) {
+            if (s.getDateTime().isAfter(LocalDate.now().atStartOfDay()) && s.getUser().getUsername().equals(user.getUsername())) {
                 throw new UserAlreadySignedException("User already signed!");
-
             }
+
         }
+
         LocalDateTime now = LocalDateTime.now();
         getList().add(new Signature(user, now));
         serialize();
@@ -59,7 +61,7 @@ public class SignatureList {
     public Signature getByUserToday(String username) {
         Signature ret = null;
         for (Signature s : getList()) {
-            if (s.getDateTime().toEpochSecond(ZoneOffset.UTC) > LocalDateTime.now().toEpochSecond(ZoneOffset.UTC) - 86400 && s.getUser().getUsername().equals(username)) {
+            if (s.getDateTime().isAfter(LocalDate.now().atStartOfDay()) && s.getUser().getUsername().equals(username)) {
                 ret = s;
                 break;
             }
@@ -69,7 +71,7 @@ public class SignatureList {
         return ret;
 
     }
-    
+
     /**
      *
      * @throws FileNotFoundException

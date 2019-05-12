@@ -19,7 +19,7 @@ import javax.swing.SwingUtilities;
 
 /**
  *
- * @author raul
+ * @author Raul Farkas
  */
 public class AdminUserSignPresencePanel extends javax.swing.JPanel {
 
@@ -31,6 +31,10 @@ public class AdminUserSignPresencePanel extends javax.swing.JPanel {
         welcomeLabel.setText("Welcome, " + MainWindow.session.getUser().getUsername());
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         todayLabel.setText("Today: " + formatter.format(new Date()));
+        Signature yourSignature = MainWindow.signatureList.getByUserToday(MainWindow.session.getUser().getUsername());
+        if (yourSignature != null) {
+            this.alreadySignedLabel1.setText("You signed on " + yourSignature.getDateTime().format(DateTimeFormatter.ofPattern("dd-MM-YYYY")) + " at " + yourSignature.getDateTime().format(DateTimeFormatter.ofPattern("hh:mm:ss a\t")));
+        }
     }
 
     /**
@@ -49,12 +53,18 @@ public class AdminUserSignPresencePanel extends javax.swing.JPanel {
         goToProfileButton = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(500, 0), new java.awt.Dimension(500, 0), new java.awt.Dimension(20, 100));
         todayLabel = new javax.swing.JLabel();
-        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(500, 0), new java.awt.Dimension(500, 0), new java.awt.Dimension(20, 70));
+        jPanel2 = new javax.swing.JPanel();
+        filler6 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 32767));
+        alreadySignedLabel1 = new javax.swing.JLabel();
+        filler2 = new javax.swing.Box.Filler(new java.awt.Dimension(500, 0), new java.awt.Dimension(500, 0), new java.awt.Dimension(20, 30));
         signButton = new javax.swing.JButton();
         signedReference = new javax.swing.JLabel();
         filler3 = new javax.swing.Box.Filler(new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 50));
         adminToolsButton = new javax.swing.JButton();
         filler4 = new javax.swing.Box.Filler(new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 0), new java.awt.Dimension(50, 50));
+        jPanel1 = new javax.swing.JPanel();
+        filler5 = new javax.swing.Box.Filler(new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 0), new java.awt.Dimension(30, 32767));
+        alreadySignedLabel = new javax.swing.JLabel();
 
         setMaximumSize(new java.awt.Dimension(1780, 720));
         setMinimumSize(new java.awt.Dimension(1780, 720));
@@ -141,6 +151,21 @@ public class AdminUserSignPresencePanel extends javax.swing.JPanel {
         todayLabel.setText("Today: ");
         todayLabel.setAlignmentX(0.5F);
         mainPanel.add(todayLabel);
+
+        jPanel2.setBackground(new java.awt.Color(63, 81, 181));
+        jPanel2.setMaximumSize(new java.awt.Dimension(1280, 50));
+        jPanel2.setMinimumSize(new java.awt.Dimension(1280, 50));
+        jPanel2.setPreferredSize(new java.awt.Dimension(1280, 50));
+        jPanel2.setLayout(new javax.swing.BoxLayout(jPanel2, javax.swing.BoxLayout.PAGE_AXIS));
+        jPanel2.add(filler6);
+
+        alreadySignedLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        alreadySignedLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        alreadySignedLabel1.setText("You haven't signed yet!");
+        alreadySignedLabel1.setAlignmentX(0.5F);
+        jPanel2.add(alreadySignedLabel1);
+
+        mainPanel.add(jPanel2);
         mainPanel.add(filler2);
 
         signButton.setBackground(new java.awt.Color(0, 59, 142));
@@ -182,6 +207,19 @@ public class AdminUserSignPresencePanel extends javax.swing.JPanel {
         mainPanel.add(adminToolsButton);
         mainPanel.add(filler4);
 
+        jPanel1.setBackground(new java.awt.Color(63, 81, 181));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1280, 50));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1280, 50));
+        jPanel1.setPreferredSize(new java.awt.Dimension(1280, 50));
+        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.PAGE_AXIS));
+        jPanel1.add(filler5);
+
+        alreadySignedLabel.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        alreadySignedLabel.setForeground(new java.awt.Color(255, 255, 255));
+        alreadySignedLabel.setText("You haven't signed yet!");
+        alreadySignedLabel.setAlignmentX(0.5F);
+        jPanel1.add(alreadySignedLabel);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,12 +227,22 @@ public class AdminUserSignPresencePanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 1280, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 500, Short.MAX_VALUE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 778, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -234,6 +282,10 @@ public class AdminUserSignPresencePanel extends javax.swing.JPanel {
                 MainWindow.signatureList.signNow(MainWindow.session.getUser());
                 JOptionPane.showMessageDialog(null,
                 "You signed at: " + LocalDateTime.now().format(DateTimeFormatter.ofPattern("hh.mm a\t dd/MM/yyyy"))+"\n successfully!");
+                JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+                topFrame.getContentPane().removeAll();
+                topFrame.getContentPane().add(new AdminUserSignPresencePanel());
+                topFrame.pack();
             } catch (UserAlreadySignedException ex) {
                 
                 JOptionPane.showMessageDialog(null,
@@ -258,11 +310,17 @@ public class AdminUserSignPresencePanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adminToolsButton;
+    private javax.swing.JLabel alreadySignedLabel;
+    private javax.swing.JLabel alreadySignedLabel1;
     private javax.swing.Box.Filler filler1;
     private javax.swing.Box.Filler filler2;
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
+    private javax.swing.Box.Filler filler5;
+    private javax.swing.Box.Filler filler6;
     private javax.swing.JButton goToProfileButton;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logOutButton;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JButton signButton;

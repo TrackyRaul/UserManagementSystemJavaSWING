@@ -313,6 +313,7 @@ public class Profile extends javax.swing.JPanel {
     }//GEN-LAST:event_goToHome
 
     private void saveData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveData
+        //Save data
         MainWindow.session.getUser().setName(nameField.getText());
         MainWindow.session.getUser().setSurname(surnameField.getText());
         MainWindow.session.getUser().setEmail(emailField.getText());
@@ -328,7 +329,7 @@ public class Profile extends javax.swing.JPanel {
     }//GEN-LAST:event_saveData
 
     private void cancelData(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelData
-        // TODO add your handling code here:
+        //Cancel data
         if (!nameField.getText().equals(MainWindow.session.getUser().getName()) || !surnameField.getText().equals(MainWindow.session.getUser().getSurname()) || !emailField.getText().equals(MainWindow.session.getUser().getEmail())) {
             nameField.setText(MainWindow.session.getUser().getName());
             surnameField.setText(MainWindow.session.getUser().getSurname());

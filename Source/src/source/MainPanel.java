@@ -22,8 +22,6 @@ public class MainPanel extends javax.swing.JPanel {
      * Creates new form MainPanel
      */
     public MainPanel() {
-        
-        
         initComponents();
         welcomeLabel.setText("Welcome, guest!");
         
@@ -52,6 +50,7 @@ public class MainPanel extends javax.swing.JPanel {
         mainPanel = new javax.swing.JPanel();
         topPanel = new javax.swing.JPanel();
         welcomeLabel = new javax.swing.JLabel();
+        helpButton = new javax.swing.JButton();
         filler1 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 0), new java.awt.Dimension(100, 70));
         quotePanel = new javax.swing.JPanel();
         quoteTopPanel = new javax.swing.JPanel();
@@ -74,7 +73,8 @@ public class MainPanel extends javax.swing.JPanel {
         mainPanel.setDoubleBuffered(false);
         mainPanel.setMaximumSize(new java.awt.Dimension(1280, 720));
         mainPanel.setMinimumSize(new java.awt.Dimension(1280, 720));
-        mainPanel.setLayout(new javax.swing.BoxLayout(mainPanel, javax.swing.BoxLayout.Y_AXIS));
+        mainPanel.setPreferredSize(new java.awt.Dimension(1280, 720));
+        mainPanel.setLayout(new javax.swing.BoxLayout(mainPanel, javax.swing.BoxLayout.PAGE_AXIS));
 
         topPanel.setBackground(new java.awt.Color(63, 81, 181));
         topPanel.setAlignmentY(0.0F);
@@ -85,6 +85,21 @@ public class MainPanel extends javax.swing.JPanel {
         welcomeLabel.setText("Welcome");
         welcomeLabel.setAlignmentY(0.0F);
 
+        helpButton.setBackground(new java.awt.Color(0, 59, 142));
+        helpButton.setForeground(new java.awt.Color(255, 255, 255));
+        helpButton.setText("Help");
+        helpButton.setAlignmentX(0.5F);
+        helpButton.setBorder(null);
+        helpButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        helpButton.setMargin(null);
+        helpButton.setMaximumSize(new java.awt.Dimension(200, 50));
+        helpButton.setPreferredSize(new java.awt.Dimension(200, 50));
+        helpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                goToHelp(evt);
+            }
+        });
+
         javax.swing.GroupLayout topPanelLayout = new javax.swing.GroupLayout(topPanel);
         topPanel.setLayout(topPanelLayout);
         topPanelLayout.setHorizontalGroup(
@@ -92,14 +107,18 @@ public class MainPanel extends javax.swing.JPanel {
             .addGroup(topPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(welcomeLabel)
-                .addContainerGap(1139, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 927, Short.MAX_VALUE)
+                .addComponent(helpButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         topPanelLayout.setVerticalGroup(
             topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(topPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(welcomeLabel)
-                .addContainerGap(49, Short.MAX_VALUE))
+                .addGroup(topPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(helpButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(welcomeLabel))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         mainPanel.add(topPanel);
@@ -160,7 +179,7 @@ public class MainPanel extends javax.swing.JPanel {
             .addComponent(quoteTopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(quotePanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addContainerGap())
         );
         quotePanelLayout.setVerticalGroup(
@@ -260,6 +279,15 @@ public class MainPanel extends javax.swing.JPanel {
         topFrame.pack();
     }//GEN-LAST:event_goToRegister
 
+    private void goToHelp(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goToHelp
+        // TODO add your handling code here:
+        JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(this);
+        topFrame.getContentPane().removeAll();
+        topFrame.getContentPane().add(new HelpPanel());
+        topFrame.pack();
+        
+    }//GEN-LAST:event_goToHelp
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel buttonsPanel;
@@ -268,6 +296,7 @@ public class MainPanel extends javax.swing.JPanel {
     private javax.swing.Box.Filler filler3;
     private javax.swing.Box.Filler filler4;
     private javax.swing.Box.Filler filler5;
+    private javax.swing.JButton helpButton;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel mainPanel;

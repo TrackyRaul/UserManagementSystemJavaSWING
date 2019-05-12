@@ -4,7 +4,8 @@ package source;
 import java.io.Serializable;
 
 /**
- *
+ * Admin class
+ * 
  * @author Raul Farkas
  */
 public class Admin extends User implements Serializable {

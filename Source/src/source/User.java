@@ -53,6 +53,8 @@ public class User implements Serializable {
         this.password = password;
         this.email = email;
         this.blocked = false;
+        this.role = "";
+        this.description = "";
     }
 
     /**

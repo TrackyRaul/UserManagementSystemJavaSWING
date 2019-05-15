@@ -185,7 +185,7 @@
                     </Property>
                     <Property name="lineWrap" type="boolean" value="true"/>
                     <Property name="rows" type="int" value="5"/>
-                    <Property name="text" type="java.lang.String" value="Github repository: https://github.com/TrackyRaul/UserManagementSystemJavaSWING&#xa;&#xa;Admin account:&#xa;    user: admin&#xa;    password: admin1234&#xa;"/>
+                    <Property name="text" type="java.lang.String" value="Github repository: https://github.com/TrackyRaul/UserManagementSystemJavaSWING&#xa;&#xa;Admin account:&#xa;    user: admin&#xa;    password: admin1234&#xa;&#xa;Utilizzare l&apos;account amministratore per gestire firme e utenti.&#xa;Creare nuovo account per vedere le funzionalit&#xe0; degli utenti normali.&#xa;"/>
                     <Property name="wrapStyleWord" type="boolean" value="true"/>
                   </Properties>
                 </Component>

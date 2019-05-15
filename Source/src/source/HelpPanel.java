@@ -110,7 +110,7 @@ public class HelpPanel extends javax.swing.JPanel {
         jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
         jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("Github repository: https://github.com/TrackyRaul/UserManagementSystemJavaSWING\n\nAdmin account:\n    user: admin\n    password: admin1234\n");
+        jTextArea1.setText("Github repository: https://github.com/TrackyRaul/UserManagementSystemJavaSWING\n\nAdmin account:\n    user: admin\n    password: admin1234\n\nUtilizzare l'account amministratore per gestire firme e utenti.\nCreare nuovo account per vedere le funzionalità degli utenti normali.\n");
         jTextArea1.setWrapStyleWord(true);
         jScrollPane1.setViewportView(jTextArea1);
 

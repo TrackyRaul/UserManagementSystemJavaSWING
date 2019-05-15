@@ -158,7 +158,7 @@ public class AdminMoreInfoViewPanel extends javax.swing.JPanel {
 
         welcomeLabel.setFont(new java.awt.Font("Dialog", 1, 28)); // NOI18N
         welcomeLabel.setForeground(new java.awt.Color(255, 255, 255));
-        welcomeLabel.setText("User: "+MainWindow.session.getUser().getUsername());
+        welcomeLabel.setText("User: "+this.refUser.getUsername());
         welcomeLabel.setAlignmentX(0.5F);
         welcomeLabel.setAlignmentY(0.0F);
         credentialsPanel.add(welcomeLabel);
